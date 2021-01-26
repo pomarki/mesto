@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Страница про интересные места для путешествий по России"
+    />
+    <meta
+      name="keywords"
+      content="путешествия, Сочи, Санкт-Петербург, Петергов, Эльбрус, Куршская коса, Калининград, Теберда"
+    />
+    <meta name="author" content="Денис Шалаев" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+   </head>
+   <body class="page">
+       <header class="header page__header">
+           <div class="header__logo"></div>
+       </header>
+       <main class="content">
+           <section class="profile page__profile">
+                   <img class="profile__info-avatar" src="./images/profile__avatar-img.jpg">
+                   <h1 class="profile__info-name profile_text-field">Жак-Ив Кусто</h1>
+                   <button class="profile__edit-button page_link"></button>
+                   <p class="profile__info-job profile_text-field">Исследователь океана</p>
+                   <button class="profile__add-button page_link"></button>
+               </div>
+           </section>
+           <section class="elements page__elements">
+               <ul class="elements__list">
+                   <li class="elements__item">
+                       <div class="element">
+                           <img class="element__img" src="images/elements__item-01.png" alt="Мамаев Курган">
+                           <div class="element__info">
+                               <p class="element__info-place">Мамаев Курган</p>
+                               <div class="element__info-heart page_link"></div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="elements__item">
+                    <div class="element">
+                        <img class="element__img" src="images/elements__item-02.png" alt="Волгоградское море">
+                        <div class="element__info">
+                            <p class="element__info-place">Волгоградское море</p>
+                            <div class="element__info-heart page_link"></div>
+                        </div>
+                    </div>
+                   </li>
+                   <li class="elements__item">
+                    <div class="element">
+                        <img class="element__img" src="images/elements__item-03.png" alt="Теберда">
+                        <div class="element__info">
+                            <p class="element__info-place">Теберда</p>
+                            <div class="element__info-heart page_link"></div>
+                        </div>
+                    </div>
+                   </li>
+                   <li class="elements__item">
+                    <div class="element">
+                        <img class="element__img" src="images/elements__item-04.png" alt="Калининград">
+                        <div class="element__info">
+                            <p class="element__info-place">Калининград</p>
+                            <div class="element__info-heart page_link"></div>
+                        </div>
+                    </div>
+                   </li>
+                   <li class="elements__item">
+                    <div class="element">
+                        <img class="element__img" src="images/elements__item-05.png" alt="Петергоф">
+                        <div class="element__info">
+                            <p class="element__info-place">Петергоф</p>
+                            <div class="element__info-heart page_link"></div>
+                        </div>
+                    </div>
+                   </li>
+                   <li class="elements__item">
+                    <div class="element">
+                        <img class="element__img" src="images/elements__item-06.png" alt="Чегет">
+                        <div class="element__info">
+                            <p class="element__info-place">Чегет</p>
+                            <div class="element__info-heart page_link"></div>
+                        </div>
+                    </div>
+                   </li>
+               </ul>
+           </section>
+           <section class="popup">
+             <form class="popup__container">
+                 <button type="reset" class="popup__close page_link" aria-label="Закрыть окно"></button>
+                 <p class="popup__title">Редактировать профиль</p>
+                 <input class="popup__name popup_text-field" type="text" placeholder="Ваше имя">
+                 <input class="popup__job popup_text-field" type="text" placeholder="Ваша профессия">
+                 <button type="submit" class="popup__save page_link">Сохранить</button>
+             </form> 
+           </section>
+       </main>
+       <footer class="footer page__footer">
+           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+       </footer>
+       <script src="./js/main.js"></script>
+   </body>
+</html>

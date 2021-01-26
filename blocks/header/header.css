@@ -1,0 +1,12 @@
+.header {
+    max-width: 880px;
+    padding: 45px 0 0 0; 
+    height: 74px;
+    border-bottom: solid 1px #545454;
+ }
+ .header__logo {
+     background: center / cover no-repeat url(../../images/header__logo.svg);
+     width: 142px;
+     height: 33px;
+     
+ }
