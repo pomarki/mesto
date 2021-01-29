@@ -1,48 +1,13 @@
 .element {
-    max-width: 282px;
-    width: 100%;
-    max-height: 361px;
-    overflow: hidden;
-    border-radius: 10px;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-.element__img {
-    max-width: 282px;
-    width: 100%;
-    
-}
-.element__info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 246px;
-    height: 79px;
-}
-.element__info-place {
-    padding: 0;
-    margin: 0;
-    max-width: 224px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 1.2;
-    color: #000;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
-}
-.element__info-heart {
-    width: 22px;
-    height: 19px;
-    background-image: url(../../images/element__heart-disabled.svg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  max-width: 282px;
+  width: 100%;
+  max-height: 361px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }

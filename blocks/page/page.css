@@ -8,21 +8,9 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-}
-.page__header {
-  margin: 0 auto;
-}
-.page__profile {
-  margin: 0 auto;
-}
-.page__elements {
-  margin: 0 auto;
-}
-.page__footer {
-  margin: 0 auto;
-}
-.page_link:hover {
-  opacity: 0.6;
-  cursor: pointer;
-  transition: opacity 0.4s linear;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
 }
