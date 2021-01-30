@@ -1,8 +1,8 @@
-.popup__job {
+.popup__text-field_type_job {
   margin: 0 0 48px 0;
 }
 @media screen and (max-width: 600px) {
-  .popup__job {
+  .popup__text-field_type_job {
     margin: 0 0 45px 0;
   }
 }
