@@ -10,9 +10,15 @@
   overflow: hidden;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 0 0 24px 0;
 }
+.popup__text-field:last-of-type {
+  margin: 0 0 48px 0;
+}
+
 @media screen and (max-width: 600px) {
   .popup__text-field {
     width: 238px;
   }
+  
 }

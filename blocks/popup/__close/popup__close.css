@@ -1,18 +1,21 @@
 .popup__close {
   width: 40px;
   height: 40px;
-  background: center / cover no-repeat #00000000 url(../../../images/icon-plus.svg);
+  background: center / cover no-repeat #00000000
+    url(../../../images/icon-plus.svg);
   transform: rotate(-45deg);
   border: 0;
   position: absolute;
   top: -40px;
   left: 430px;
+  outline-style: none;
 }
+
 @media screen and (max-width: 600px) {
   .popup__close {
     width: 26px;
     height: 26px;
-    top: -46px;
-    left: 254px;
+    top: -44px;
+    left: 251px;
   }
 }

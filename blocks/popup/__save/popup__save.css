@@ -13,6 +13,13 @@
   line-height: 1.22;
   text-align: center;
 }
+.popup__save:hover {
+  opacity: .8;
+  cursor: pointer;
+  transition: opacity 0.4s linear;
+}
+
+
 @media screen and (max-width: 600px) {
   .popup__save {
     width: 238px;

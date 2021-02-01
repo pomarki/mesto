@@ -4,6 +4,9 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 1.22;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   grid-column: 1 / 3;
