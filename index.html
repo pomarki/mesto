@@ -13,6 +13,7 @@
     />
     <meta name="author" content="Денис Шалаев" />
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./scripts/main.js" defer></script>
     <title>Mesto</title>
   </head>
   <body class="page">
@@ -35,84 +36,6 @@
       </section>
       <section class="elements page__elements">
         <ul class="elements__list">
-          <li class="elements__item">
-            <div class="element">
-              <img
-                class="element__img"
-                src="images/elements__item-01.png"
-                alt="Мамаев Курган"
-              />
-              <div class="element__info">
-                <h2 class="element__info-place">Мамаев Курган</h2>
-                <button type="button" class="element__info-heart"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="element">
-              <img
-                class="element__img"
-                src="images/elements__item-02.png"
-                alt="Волгоградское море"
-              />
-              <div class="element__info">
-                <h2 class="element__info-place">Волгоградское море</h2>
-                <button type="button" class="element__info-heart"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="element">
-              <img
-                class="element__img"
-                src="images/elements__item-03.png"
-                alt="Теберда"
-              />
-              <div class="element__info">
-                <h2 class="element__info-place">Теберда</h2>
-                <button type="button" class="element__info-heart"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="element">
-              <img
-                class="element__img"
-                src="images/elements__item-04.png"
-                alt="Калининград"
-              />
-              <div class="element__info">
-                <h2 class="element__info-place">Калининград</h2>
-                <button type="button" class="element__info-heart"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="element">
-              <img
-                class="element__img"
-                src="images/elements__item-05.png"
-                alt="Петергоф"
-              />
-              <div class="element__info">
-                <h2 class="element__info-place">Петергоф</h2>
-                <button type="button" class="element__info-heart"></button>
-              </div>
-            </div>
-          </li>
-          <li class="elements__item">
-            <div class="element">
-              <img
-                class="element__img"
-                src="images/elements__item-06.png"
-                alt="Чегет"
-              />
-              <div class="element__info">
-                <h2 class="element__info-place">Чегет</h2>
-                <button type="button" class="element__info-heart"></button>
-              </div>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -144,6 +67,22 @@
       </form>
       </div>
     </section>
-    <script src="./scripts/main.js"></script>
+    <template id="template__element">
+      <li class="elements__item">
+        <div class="element">
+          <button type="button" class="element__trash"></button>
+          <img
+            class="element__img"
+            src=""
+            alt=""
+          />
+          <div class="element__info">
+            <h2 class="element__info-place"></h2>
+            <button type="button" class="element__info-heart"></button>
+            
+          </div>
+        </div>
+      </li>
+    </template>
   </body>
 </html>

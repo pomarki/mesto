@@ -1,30 +1,47 @@
-let buttonProfileEdit = document.querySelector(".profile__edit-button");
-let popupWindow = document.querySelector(".popup");
-let profileContainer = document.querySelector(".profile");
-let profileName = profileContainer.querySelector(".profile__name");
-let profileJob = profileContainer.querySelector(".profile__job");
-let formUserInfo = document.querySelector("form[name=user-info]");
-let formUserName = formUserInfo.querySelector("input[name=user-name]");
-let formUserJob = formUserInfo.querySelector("input[name=user-job]");
-let buttonPopupClose = popupWindow.querySelector(".popup__close");
 
-function openEditPopup() {
-  popupWindow.classList.add("popup_opened");
-  formUserName.value = profileName.textContent;
-  formUserJob.value = profileJob.textContent;
+const elementCardsContainer = document.querySelector('.elements__list');
+const elementCard = document.querySelector('#template__element');
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+function renderCard() {
+  const htmlCards = initialCards.map(getCard);
+  elementCardsContainer.append(...htmlCards);
 }
-function closeEditPopup() {
-  popupWindow.classList.remove("popup_opened");
+
+function getCard(item) {
+  const newCard = elementCard.content.cloneNode(true);
+  const newCardInfo = newCard.querySelector('.element__info-place');
+  const newCardPicture = newCard.querySelector('.element__img');
+  newCardInfo.textContent = item.name;
+  newCardPicture.src = item.link;
+  newCardPicture.alt = item.name;
+  return newCard;
 }
 
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  profileName.textContent = formUserName.value;
-  profileJob.textContent = formUserJob.value;
-
-  closeEditPopup();
-}
-
-buttonProfileEdit.addEventListener("click", openEditPopup);
-formUserInfo.addEventListener("submit", formSubmitHandler);
-buttonPopupClose.addEventListener("click", closeEditPopup);
+renderCard();

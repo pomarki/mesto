@@ -1,13 +1,13 @@
 .element__info-heart {
   width: 22px;
   height: 19px;
- background: center / cover no-repeat
+  background: center / cover no-repeat
     url(../../../images/element__heart-disabled.svg);
   border: 0;
   outline-style: none;
 }
 .element__info-heart:hover {
-  opacity: .5;
+  opacity: 0.5;
   cursor: pointer;
   transition: opacity 0.4s linear;
 }
