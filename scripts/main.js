@@ -74,6 +74,9 @@ function getCard(item) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("element__info-heart_disabled");
     });
+    newCard.querySelector(".element__trash").addEventListener("click", function (evt) {
+      evt.target.closest(".elements__item").remove();
+    });  
   return newCard;
 }
 
@@ -118,6 +121,9 @@ function formPictureLoad(evt) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("element__info-heart_disabled");
     });
+    newCard.querySelector(".element__trash").addEventListener("click", function (evt) {
+      evt.target.closest(".elements__item").remove();
+    });  
   elementCardsContainer.prepend(newCard);
   formPictureLink.value = "";
   formPictureName.value = "";
