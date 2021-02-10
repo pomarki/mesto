@@ -21,7 +21,7 @@ let buttonPictureAdd = profileContainer.querySelector(".profile__add-button");
 let buttonAddClose = popupPictureContainer.querySelector(".popup__close");
 
 const elementCardsContainer = document.querySelector(".elements__list");
-const elementCard = document.querySelector("#template__element");
+const elementCardTemplate = document.querySelector("#template__element");
 
 const initialCards = [
   {
@@ -56,22 +56,26 @@ const initialCards = [
   },
 ];
 
-function renderCard() {
+function renderInitialCard() {
   const htmlCards = initialCards.map(getCard);
   elementCardsContainer.append(...htmlCards);
 }
 
 function getCard(item) {
-  const newCard = elementCard.content.cloneNode(true);
+  const newCard = elementCardTemplate.content.cloneNode(true);
   const newCardInfo = newCard.querySelector(".element__info-place");
   const newCardPicture = newCard.querySelector(".element__img");
+
   newCardInfo.textContent = item.name;
   newCardPicture.src = item.link;
   newCardPicture.alt = item.name;
+  newCard
+    .querySelector(".element__info-heart")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__info-heart_disabled");
+    });
   return newCard;
 }
-
-renderCard();
 
 function openEditPopup() {
   popupWindow.classList.add("popup_opened");
@@ -103,12 +107,17 @@ function closeAddPopup() {
 
 function formPictureLoad(evt) {
   evt.preventDefault();
-  const newCard = elementCard.content.cloneNode(true);
+  const newCard = elementCardTemplate.content.cloneNode(true);
   const newCardInfo = newCard.querySelector(".element__info-place");
   const newCardPicture = newCard.querySelector(".element__img");
   newCardInfo.textContent = formPictureName.value;
   newCardPicture.src = formPictureLink.value;
   newCardPicture.alt = formPictureName.value;
+  newCard
+    .querySelector(".element__info-heart")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__info-heart_disabled");
+    });
   elementCardsContainer.prepend(newCard);
   formPictureLink.value = "";
   formPictureName.value = "";
@@ -121,3 +130,7 @@ buttonPictureAdd.addEventListener("click", openAddPopup);
 buttonProfileEdit.addEventListener("click", openEditPopup);
 formUserInfo.addEventListener("submit", formProfileHandler);
 buttonPopupClose.addEventListener("click", closeEditPopup);
+
+let elementCard = document.querySelectorAll(".element");
+
+renderInitialCard();
