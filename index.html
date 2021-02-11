@@ -43,7 +43,7 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <section class="popup page__popup">
-      <div class="popup__container popup__container_type_profile">
+      <div class="popup__container" id="container-profile">
         <button
           type="button"
           class="popup__close link"
@@ -66,7 +66,7 @@
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
       </div>
-      <div class="popup__container popup__container_type_picture">
+      <div class="popup__container" id="container-picture">
         <button
           type="button"
           class="popup__close link"
@@ -108,7 +108,7 @@
           />
           <div class="element__info">
             <h2 class="element__info-place"></h2>
-            <button type="button" class="element__info-heart element__info-heart_disabled"></button>
+            <button type="button" class="element__info-heart element__info-heart_type_disabled"></button>
           </div>
         </div>
       </li>

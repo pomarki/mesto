@@ -3,17 +3,12 @@ let popupWindow = document.querySelector(".popup");
 let profileContainer = document.querySelector(".profile");
 let profileName = profileContainer.querySelector(".profile__name");
 let profileJob = profileContainer.querySelector(".profile__job");
-let popupProfileContainer = popupWindow.querySelector(
-  ".popup__container_type_profile"
-);
+let popupProfileContainer = popupWindow.querySelector("#container-profile");
 let formUserInfo = document.querySelector("form[name=user-info]");
 let formUserName = formUserInfo.querySelector("input[name=user-name]");
 let formUserJob = formUserInfo.querySelector("input[name=user-job]");
 let buttonPopupClose = popupProfileContainer.querySelector(".popup__close");
-
-let popupPictureContainer = popupWindow.querySelector(
-  ".popup__container_type_picture"
-);
+let popupPictureContainer = popupWindow.querySelector("#container-picture");
 let formAddPicture = document.querySelector("form[name=add-picture]");
 let formPictureName = formAddPicture.querySelector("input[name=picture-name]");
 let formPictureLink = formAddPicture.querySelector("input[name=picture-link]");
@@ -23,7 +18,6 @@ let buttonAddClose = popupPictureContainer.querySelector(".popup__close");
 const elementCardsContainer = document.querySelector(".elements__list");
 const elementCardTemplate = document.querySelector("#template__element");
 const picturePopupTemplate = document.querySelector("#template__popup-picture");
-
 const fullPicture = document.querySelector(".popup-picture");
 const fullPictureSrc = fullPicture.querySelector(".popup-picture__img");
 const fullPictureSubtitle = fullPicture.querySelector(
@@ -76,7 +70,7 @@ function addCard(item) {
   newCard
     .querySelector(".element__info-heart")
     .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__info-heart_disabled");
+      evt.target.classList.toggle("element__info-heart_type_disabled");
     });
   newCard
     .querySelector(".element__trash")
@@ -101,13 +95,15 @@ function addCard(item) {
 }
 function openEditPopup() {
   popupWindow.classList.add("popup_opened");
-  popupProfileContainer.classList.remove("popup__container_type_profile");
-  popupPictureContainer.classList.add("popup__container_type_picture");
+  popupProfileContainer.classList.add("popup__container_opened");
   formUserName.value = profileName.textContent;
   formUserJob.value = profileJob.textContent;
 }
+
+
 function closeEditPopup() {
   popupWindow.classList.remove("popup_opened");
+  popupProfileContainer.classList.remove("popup__container_opened");
 }
 function formProfileHandler(evt) {
   evt.preventDefault();
@@ -118,12 +114,12 @@ function formProfileHandler(evt) {
 }
 function openAddPopup() {
   popupWindow.classList.add("popup_opened");
-  popupPictureContainer.classList.remove("popup__container_type_picture");
-  popupProfileContainer.classList.add("popup__container_type_profile");
+  popupPictureContainer.classList.add("popup__container_opened");
+  
 }
 function closeAddPopup() {
   popupWindow.classList.remove("popup_opened");
-  popupPictureContainer.classList.add("popup__container_type_picture");
+  popupPictureContainer.classList.remove("popup__container_opened");
 }
 function renderLoadCard(evt) {
   evt.preventDefault();
