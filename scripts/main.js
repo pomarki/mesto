@@ -24,6 +24,12 @@ const elementCardsContainer = document.querySelector(".elements__list");
 const elementCardTemplate = document.querySelector("#template__element");
 const picturePopupTemplate = document.querySelector("#template__popup-picture");
 
+const fullPicture = document.querySelector(".popup-picture");
+const fullPictureSrc = fullPicture.querySelector(".popup-picture__img");
+const fullPictureSubtitle = fullPicture.querySelector(
+  ".popup-picture__subtitle"
+);
+
 const initialCards = [
   {
     name: "Архыз",
@@ -60,7 +66,6 @@ const initialCards = [
 function renderInitialCard() {
   initialCards.map(addCard);
 }
-
 function addCard(item) {
   const newCard = elementCardTemplate.content.cloneNode(true);
   const newCardInfo = newCard.querySelector(".element__info-place");
@@ -81,8 +86,17 @@ function addCard(item) {
   newCard
     .querySelector(".element__img")
     .addEventListener("click", function (evt) {
-      console.log(evt);
+      console.log(evt.target.alt);
+      fullPictureSrc.src = evt.target.src;
+      fullPictureSubtitle.textContent = evt.target.alt;
+      fullPicture.classList.add("popup-picture_opened");
     });
+  fullPicture
+    .querySelector(".popup-picture__close-button")
+    .addEventListener("click", function (evt) {
+      fullPicture.classList.remove("popup-picture_opened");
+    });
+
   elementCardsContainer.prepend(newCard);
 }
 function openEditPopup() {
@@ -111,12 +125,11 @@ function closeAddPopup() {
   popupWindow.classList.remove("popup_opened");
   popupPictureContainer.classList.add("popup__container_type_picture");
 }
-
 function renderLoadCard(evt) {
- evt.preventDefault();
+  evt.preventDefault();
   addCard({
     name: formPictureName.value,
-    link: formPictureLink.value
+    link: formPictureLink.value,
   });
   formAddPicture.reset();
   closeAddPopup();
