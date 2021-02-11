@@ -22,6 +22,7 @@ let buttonAddClose = popupPictureContainer.querySelector(".popup__close");
 
 const elementCardsContainer = document.querySelector(".elements__list");
 const elementCardTemplate = document.querySelector("#template__element");
+const picturePopupTemplate = document.querySelector("#template__popup-picture");
 
 const initialCards = [
   {
@@ -57,15 +58,13 @@ const initialCards = [
 ];
 
 function renderInitialCard() {
-  const htmlCards = initialCards.map(getCard);
-  elementCardsContainer.append(...htmlCards);
+  initialCards.map(addCard);
 }
 
-function getCard(item) {
+function addCard(item) {
   const newCard = elementCardTemplate.content.cloneNode(true);
   const newCardInfo = newCard.querySelector(".element__info-place");
   const newCardPicture = newCard.querySelector(".element__img");
-
   newCardInfo.textContent = item.name;
   newCardPicture.src = item.link;
   newCardPicture.alt = item.name;
@@ -74,12 +73,18 @@ function getCard(item) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("element__info-heart_disabled");
     });
-    newCard.querySelector(".element__trash").addEventListener("click", function (evt) {
+  newCard
+    .querySelector(".element__trash")
+    .addEventListener("click", function (evt) {
       evt.target.closest(".elements__item").remove();
-    });  
-  return newCard;
+    });
+  newCard
+    .querySelector(".element__img")
+    .addEventListener("click", function (evt) {
+      console.log(evt);
+    });
+  elementCardsContainer.prepend(newCard);
 }
-
 function openEditPopup() {
   popupWindow.classList.add("popup_opened");
   popupProfileContainer.classList.remove("popup__container_type_profile");
@@ -90,7 +95,6 @@ function openEditPopup() {
 function closeEditPopup() {
   popupWindow.classList.remove("popup_opened");
 }
-
 function formProfileHandler(evt) {
   evt.preventDefault();
   profileName.textContent = formUserName.value;
@@ -108,35 +112,21 @@ function closeAddPopup() {
   popupPictureContainer.classList.add("popup__container_type_picture");
 }
 
-function formPictureLoad(evt) {
-  evt.preventDefault();
-  const newCard = elementCardTemplate.content.cloneNode(true);
-  const newCardInfo = newCard.querySelector(".element__info-place");
-  const newCardPicture = newCard.querySelector(".element__img");
-  newCardInfo.textContent = formPictureName.value;
-  newCardPicture.src = formPictureLink.value;
-  newCardPicture.alt = formPictureName.value;
-  newCard
-    .querySelector(".element__info-heart")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__info-heart_disabled");
-    });
-    newCard.querySelector(".element__trash").addEventListener("click", function (evt) {
-      evt.target.closest(".elements__item").remove();
-    });  
-  elementCardsContainer.prepend(newCard);
-  formPictureLink.value = "";
-  formPictureName.value = "";
+function renderLoadCard(evt) {
+ evt.preventDefault();
+  addCard({
+    name: formPictureName.value,
+    link: formPictureLink.value
+  });
+  formAddPicture.reset();
   closeAddPopup();
 }
 
-formAddPicture.addEventListener("submit", formPictureLoad);
+formAddPicture.addEventListener("submit", renderLoadCard);
 buttonAddClose.addEventListener("click", closeAddPopup);
 buttonPictureAdd.addEventListener("click", openAddPopup);
 buttonProfileEdit.addEventListener("click", openEditPopup);
 formUserInfo.addEventListener("submit", formProfileHandler);
 buttonPopupClose.addEventListener("click", closeEditPopup);
-
-let elementCard = document.querySelectorAll(".element");
 
 renderInitialCard();

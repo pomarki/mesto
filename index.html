@@ -90,6 +90,8 @@
       </form>
       </div>
     </section>
+    <section class="popup-picture page__popup-picture">
+    </section>
     <template id="template__element">
       <li class="elements__item">
         <div class="element">
@@ -102,10 +104,16 @@
           <div class="element__info">
             <h2 class="element__info-place"></h2>
             <button type="button" class="element__info-heart element__info-heart_disabled"></button>
-            
           </div>
         </div>
       </li>
+    </template>
+    <template id="template__popup-picture">
+      <figure class="popup-picture__container">
+        <button type="button" class="popup-picture__close-button link"></button>
+        <img class="popup-picture__img" src="">
+      <figcaption class="popup-picture__subtitle"></figcaption>      
+    </figure>
     </template>
   </body>
 </html>
