@@ -88,12 +88,12 @@ function addCard(item) {
     .addEventListener("click", function (evt) {
       fullPictureSrc.src = evt.target.src;
       fullPictureSubtitle.textContent = evt.target.alt;
-      popupWindow.classList.add("popup_opened");
+      popupWindow.classList.add("popup_opened", "popup_theme_dark");
       fullPicture.classList.add("popup__picture-container_opened");
     });
     fullPictureClose
     .addEventListener("click", function (evt) {
-      popupWindow.classList.remove("popup_opened");
+      popupWindow.classList.remove("popup_opened", "popup_theme_dark");
       fullPicture.classList.remove("popup__picture-container_opened");
       
     });

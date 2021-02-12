@@ -1,7 +1,5 @@
 .popup__container {
   top: 25%;
-  left: center;
-  margin: auto;
   position: absolute;
   width: 430px;
   border-radius: 10px;
