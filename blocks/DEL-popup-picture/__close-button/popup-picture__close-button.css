@@ -1,4 +1,4 @@
-.popup__close {
+.popup-picture__close-button {
   width: 40px;
   height: 40px;
   background: center / cover no-repeat #00000000
@@ -7,16 +7,15 @@
   border: 0;
   position: absolute;
   top: -40px;
-  /* left: 430px; */
   left: 100%;
   outline-style: none;
 }
 
 @media screen and (max-width: 600px) {
-  .popup__close {
+  .popup-picture__close-button {
     width: 26px;
     height: 26px;
     top: -44px;
-    left: 251px;
+    left: calc(100% - 26px);
   }
 }

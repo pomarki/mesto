@@ -1,28 +1,34 @@
-let buttonProfileEdit = document.querySelector(".profile__edit-button");
-let popupWindow = document.querySelector(".popup");
-let profileContainer = document.querySelector(".profile");
-let profileName = profileContainer.querySelector(".profile__name");
-let profileJob = profileContainer.querySelector(".profile__job");
-let popupProfileContainer = popupWindow.querySelector("#container-profile");
-let formUserInfo = document.querySelector("form[name=user-info]");
-let formUserName = formUserInfo.querySelector("input[name=user-name]");
-let formUserJob = formUserInfo.querySelector("input[name=user-job]");
-let buttonPopupClose = popupProfileContainer.querySelector(".popup__close");
-let popupPictureContainer = popupWindow.querySelector("#container-picture");
-let formAddPicture = document.querySelector("form[name=add-picture]");
-let formPictureName = formAddPicture.querySelector("input[name=picture-name]");
-let formPictureLink = formAddPicture.querySelector("input[name=picture-link]");
-let buttonPictureAdd = profileContainer.querySelector(".profile__add-button");
-let buttonAddClose = popupPictureContainer.querySelector(".popup__close");
-
+const buttonProfileEdit = document.querySelector(".profile__edit-button");
+const popupWindow = document.querySelector(".popup");
+const profileContainer = document.querySelector(".profile");
+const profileName = profileContainer.querySelector(".profile__name");
+const profileJob = profileContainer.querySelector(".profile__job");
+const popupProfileContainer = popupWindow.querySelector("#container-profile");
+const formUserInfo = document.querySelector("form[name=user-info]");
+const formUserName = formUserInfo.querySelector("input[name=user-name]");
+const formUserJob = formUserInfo.querySelector("input[name=user-job]");
+const buttonPopupClose = popupProfileContainer.querySelector(".popup__close");
+const popupPictureContainer = popupWindow.querySelector("#container-picture");
+const formAddPicture = document.querySelector("form[name=add-picture]");
+const formPictureName = formAddPicture.querySelector(
+  "input[name=picture-name]"
+);
+const formPictureLink = formAddPicture.querySelector(
+  "input[name=picture-link]"
+);
+const buttonPictureAdd = profileContainer.querySelector(".profile__add-button");
+const buttonAddClose = popupPictureContainer.querySelector(".popup__close");
 const elementCardsContainer = document.querySelector(".elements__list");
 const elementCardTemplate = document.querySelector("#template__element");
-const picturePopupTemplate = document.querySelector("#template__popup-picture");
-const fullPicture = document.querySelector(".popup-picture");
-const fullPictureSrc = fullPicture.querySelector(".popup-picture__img");
+
+
+const fullPicture = document.querySelector("#full-picture-container");
+const fullPictureClose = fullPicture.querySelector(".popup__close");
+const fullPictureSrc = fullPicture.querySelector(".popup__picture-img");
 const fullPictureSubtitle = fullPicture.querySelector(
-  ".popup-picture__subtitle"
+  ".popup__picture-subtitle"
 );
+
 
 const initialCards = [
   {
@@ -80,15 +86,16 @@ function addCard(item) {
   newCard
     .querySelector(".element__img")
     .addEventListener("click", function (evt) {
-      console.log(evt.target.alt);
       fullPictureSrc.src = evt.target.src;
       fullPictureSubtitle.textContent = evt.target.alt;
-      fullPicture.classList.add("popup-picture_opened");
+      popupWindow.classList.add("popup_opened");
+      fullPicture.classList.add("popup__picture-container_opened");
     });
-  fullPicture
-    .querySelector(".popup-picture__close-button")
+    fullPictureClose
     .addEventListener("click", function (evt) {
-      fullPicture.classList.remove("popup-picture_opened");
+      popupWindow.classList.remove("popup_opened");
+      fullPicture.classList.remove("popup__picture-container_opened");
+      
     });
 
   elementCardsContainer.prepend(newCard);
@@ -99,7 +106,6 @@ function openEditPopup() {
   formUserName.value = profileName.textContent;
   formUserJob.value = profileJob.textContent;
 }
-
 
 function closeEditPopup() {
   popupWindow.classList.remove("popup_opened");
@@ -115,7 +121,6 @@ function formProfileHandler(evt) {
 function openAddPopup() {
   popupWindow.classList.add("popup_opened");
   popupPictureContainer.classList.add("popup__container_opened");
-  
 }
 function closeAddPopup() {
   popupWindow.classList.remove("popup_opened");
