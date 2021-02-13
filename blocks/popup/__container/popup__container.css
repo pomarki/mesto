@@ -10,9 +10,9 @@
   background-color: #fff;
   box-sizing: border-box;
   padding: 34px 36px 37px 36px;
-  opacity: 0;
+/*   opacity: 0;
   visibility: hidden;
-  transition: all .4s linear;
+  transition: all .4s linear; */
 }
 @media screen and (max-width: 600px) {
   .popup__container {
