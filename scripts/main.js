@@ -26,6 +26,14 @@ const fullPictureSubtitle = fullPicture.querySelector('.popup__picture-subtitle'
 const elementCardsContainer = document.querySelector('.elements__list');
 const elementCardTemplate = document.querySelector('#template__element');
 
+const popupContainer = document.querySelectorAll('.popup__container');
+
+/* popupWindow.addEventListener('click', SSS);
+
+function SSS (evt) {
+	console.log(evt.currentTarget);
+} */
+
 const initialCards = [
 	{
 		name: 'Архыз',
@@ -98,10 +106,19 @@ function renderLoadCard(evt) {
 
 function openModal(modal) {
 	modal.classList.add('popup_opened');
+	document.addEventListener(
+		'keydown',
+		(closePopupByEsc = (evt) => {
+			if (evt.keyCode === 27) {
+				closeModal(modal);
+			}
+		})
+	);
 }
 
 function closeModal(modal) {
 	modal.classList.remove('popup_opened');
+	document.removeEventListener('keydown', closePopupByEsc);
 }
 
 function openProfile() {
@@ -128,5 +145,17 @@ buttonProfileClose.addEventListener('click', function (evt) {
 fullPictureClose.addEventListener('click', function (evt) {
 	closeModal(fullPicture);
 });
+
+document.addEventListener('click', function (evt) {
+	if (evt.target.classList.contains('popup')) {
+		const actualOverlay = evt.target;
+		closeModal(actualOverlay);
+	}
+});
+/* document.addEventListener('keydown', function(evt) {
+if (evt.key === 'Escape') {
+	console.log('BOOM!:', evt.target)
+}
+}); */
 
 renderInitialCard();
