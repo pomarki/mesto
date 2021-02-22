@@ -28,11 +28,7 @@ const elementCardTemplate = document.querySelector('#template__element');
 
 const popupContainer = document.querySelectorAll('.popup__container');
 
-/* popupWindow.addEventListener('click', SSS);
 
-function SSS (evt) {
-	console.log(evt.currentTarget);
-} */
 
 const initialCards = [
 	{
@@ -129,7 +125,6 @@ function openProfile() {
 
 formAddPicture.addEventListener('submit', renderLoadCard);
 formUserInfo.addEventListener('submit', formProfileHandler);
-
 buttonAddClose.addEventListener('click', function (evt) {
 	closeModal(popupPictureContainer);
 });
@@ -138,6 +133,8 @@ buttonPictureAdd.addEventListener('click', function (evt) {
 });
 
 buttonProfileEdit.addEventListener('click', openProfile);
+
+
 buttonProfileClose.addEventListener('click', function (evt) {
 	closeModal(popupProfileContainer);
 });
@@ -152,10 +149,6 @@ document.addEventListener('click', function (evt) {
 		closeModal(actualOverlay);
 	}
 });
-/* document.addEventListener('keydown', function(evt) {
-if (evt.key === 'Escape') {
-	console.log('BOOM!:', evt.target)
-}
-}); */
+
 
 renderInitialCard();
