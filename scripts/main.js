@@ -1,5 +1,5 @@
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
-const popupWindow = document.querySelectorAll('.popup');
+const popupWindows = document.querySelectorAll('.popup');
 const profileContainer = document.querySelector('.profile');
 
 const profileName = profileContainer.querySelector('.profile__name');
@@ -9,26 +9,20 @@ const popupProfileContainer = document.querySelector('#popup-profile');
 const formUserInfo = document.querySelector('form[name=user-info]');
 const formUserName = formUserInfo.querySelector('input[name=user-name]');
 const formUserJob = formUserInfo.querySelector('input[name=user-job]'); //
-const buttonProfileClose = popupProfileContainer.querySelector('.popup__close-button');
 
 const popupPictureContainer = document.querySelector('#popup-add-picture');
 const formAddPicture = document.querySelector('form[name=add-picture]');
 const formPictureName = formAddPicture.querySelector('input[name=picture-name]');
 const formPictureLink = formAddPicture.querySelector('input[name=picture-link]');
 const buttonPictureAdd = profileContainer.querySelector('.profile__add-button');
-const buttonAddClose = popupPictureContainer.querySelector('.popup__close-button');
 
 const fullPicture = document.querySelector('#popup-full-picture');
-const fullPictureClose = fullPicture.querySelector('.popup__close-button');
+
 const fullPictureSrc = fullPicture.querySelector('.popup__picture-img');
 const fullPictureSubtitle = fullPicture.querySelector('.popup__picture-subtitle');
 
 const elementCardsContainer = document.querySelector('.elements__list');
 const elementCardTemplate = document.querySelector('#template__element');
-
-const popupContainer = document.querySelectorAll('.popup__container');
-
-
 
 const initialCards = [
 	{
@@ -74,9 +68,9 @@ function addCard(item) {
 	newCard.querySelector('.element__trash').addEventListener('click', function (evt) {
 		evt.target.closest('.elements__item').remove();
 	});
-	newCard.querySelector('.element__img').addEventListener('click', function (evt) {
-		fullPictureSrc.src = evt.target.src;
-		fullPictureSubtitle.textContent = evt.target.alt;
+	newCardPicture.addEventListener('click', function (evt) {
+		fullPictureSrc.src = item.link;
+		fullPictureSubtitle.textContent = item.name;
 		openModal(fullPicture);
 	});
 
@@ -102,19 +96,12 @@ function renderLoadCard(evt) {
 
 function openModal(modal) {
 	modal.classList.add('popup_opened');
-	document.addEventListener(
-		'keydown',
-		(closePopupByEsc = (evt) => {
-			if (evt.keyCode === 27) {
-				closeModal(modal);
-			}
-		})
-	);
+	document.addEventListener('keydown', closeByEscape);
 }
 
 function closeModal(modal) {
 	modal.classList.remove('popup_opened');
-	document.removeEventListener('keydown', closePopupByEsc);
+	document.removeEventListener('keydown', closeByEscape);
 }
 
 function openProfile() {
@@ -123,32 +110,31 @@ function openProfile() {
 	formUserJob.value = profileJob.textContent;
 }
 
+function closeByEscape(evt) {
+	if (evt.key === 'Escape') {
+		const openedPopup = document.querySelector('.popup_opened');
+		closeModal(openedPopup);
+	}
+}
+
 formAddPicture.addEventListener('submit', renderLoadCard);
 formUserInfo.addEventListener('submit', formProfileHandler);
-buttonAddClose.addEventListener('click', function (evt) {
-	closeModal(popupPictureContainer);
-});
+
 buttonPictureAdd.addEventListener('click', function (evt) {
 	openModal(popupPictureContainer);
 });
 
 buttonProfileEdit.addEventListener('click', openProfile);
 
-
-buttonProfileClose.addEventListener('click', function (evt) {
-	closeModal(popupProfileContainer);
+popupWindows.forEach((popup) => {
+	popup.addEventListener('click', (evt) => {
+		if (evt.target.classList.contains('popup_opened')) {
+			closeModal(popup);
+		}
+		if (evt.target.classList.contains('popup__close-button')) {
+			closeModal(popup);
+		}
+	});
 });
-
-fullPictureClose.addEventListener('click', function (evt) {
-	closeModal(fullPicture);
-});
-
-document.addEventListener('click', function (evt) {
-	if (evt.target.classList.contains('popup')) {
-		const actualOverlay = evt.target;
-		closeModal(actualOverlay);
-	}
-});
-
 
 renderInitialCard();

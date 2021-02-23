@@ -50,11 +50,11 @@ const toggleButtonState = (inputList, buttonElement, object) => {
 const setEventListeners = (formElement, object) => {
 	const inputList = Array.from(formElement.querySelectorAll(object.inputSelector));
 	const buttonElement = formElement.querySelector(object.submitButtonSelector);
-	toggleButtonState(inputList, buttonElement, setValidation);
+	toggleButtonState(inputList, buttonElement, object);
 	inputList.forEach((inputElement) => {
 		inputElement.addEventListener('input', () => {
 			checkInputValidity(formElement, inputElement);
-			toggleButtonState(inputList, buttonElement, setValidation);
+			toggleButtonState(inputList, buttonElement, object);
 		});
 	});
 };
@@ -66,7 +66,7 @@ const enableValidation = (object) => {
 		formElement.addEventListener('submit', (evt) => {
 			evt.preventDefault();
 		});
-		setEventListeners(formElement, setValidation);
+		setEventListeners(formElement, object);
 	});
 };
 
