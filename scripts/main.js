@@ -8,13 +8,15 @@ const profileJob = profileContainer.querySelector('.profile__job');
 const popupProfileContainer = document.querySelector('#popup-profile');
 const formUserInfo = document.querySelector('form[name=user-info]');
 const formUserName = formUserInfo.querySelector('input[name=user-name]');
-const formUserJob = formUserInfo.querySelector('input[name=user-job]'); //
+const formUserJob = formUserInfo.querySelector('input[name=user-job]');
+const buttonProfileSave = formUserInfo.querySelector('.popup__save-button');
 
 const popupPictureContainer = document.querySelector('#popup-add-picture');
 const formAddPicture = document.querySelector('form[name=add-picture]');
 const formPictureName = formAddPicture.querySelector('input[name=picture-name]');
 const formPictureLink = formAddPicture.querySelector('input[name=picture-link]');
 const buttonPictureAdd = profileContainer.querySelector('.profile__add-button');
+const buttonPictureSave = formAddPicture.querySelector('.popup__save-button');
 
 const fullPicture = document.querySelector('#popup-full-picture');
 
@@ -108,6 +110,11 @@ function openProfile() {
 	openModal(popupProfileContainer);
 	formUserName.value = profileName.textContent;
 	formUserJob.value = profileJob.textContent;
+	buttonProfileSave.classList.remove('popup__save-button_type_disabled');
+}
+function openAddPictureForm() {
+	openModal(popupPictureContainer);
+	buttonPictureSave.classList.add('popup__save-button_type_disabled');
 }
 
 function closeByEscape(evt) {
@@ -120,10 +127,7 @@ function closeByEscape(evt) {
 formAddPicture.addEventListener('submit', renderLoadCard);
 formUserInfo.addEventListener('submit', formProfileHandler);
 
-buttonPictureAdd.addEventListener('click', function (evt) {
-	openModal(popupPictureContainer);
-});
-
+buttonPictureAdd.addEventListener('click', openAddPictureForm);
 buttonProfileEdit.addEventListener('click', openProfile);
 
 popupWindows.forEach((popup) => {
