@@ -1,3 +1,6 @@
+import { openModal } from "./utils.js";
+import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
+
 class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -24,6 +27,11 @@ class Card {
       .addEventListener("click", () => {
         this._heartIconClick();
       });
+    this._element
+      .querySelector(".element__img")
+      .addEventListener("click", () => {
+        this._fullPictureOpen();
+      });
   }
   _heartIconClick() {
     this._element
@@ -35,6 +43,12 @@ class Card {
       .querySelector(".element__trash")
       .closest(".elements__item")
       .remove();
+  }
+  _fullPictureOpen() {
+    fullPictureSrc.src = this._link;
+    fullPictureSubtitle.textContent = this._name;
+    openModal(fullPicture);
+
   }
 
   generateCard() {
@@ -51,11 +65,4 @@ class Card {
 
 export { Card };
 
-class FormValidator {
-  constructor(data, form) {
 
-  }
-  enableValidation(){
-
-  }
-}

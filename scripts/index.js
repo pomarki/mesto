@@ -1,36 +1,29 @@
-import { buttonProfileEdit, popupWindows, profileContainer, profileName, profileJob, popupProfileContainer, formUserInfo, formUserName, formUserJob, buttonProfileSave, popupPictureContainer, formAddPicture, formPictureName, formPictureLink, buttonPictureAdd, buttonPictureSave, fullPicture,
-    fullPictureSrc, fullPictureSubtitle, elementCardsContainer, elementCardTemplate, initialCards } from './data.js'
-    import { Card } from './card.js'
-
-function renderInitialCard() {
-  initialCards.map(addCard);
-}
-
-/* function addCard(item) {
-  const newCard = elementCardTemplate.content.cloneNode(true);
-  const newCardInfo = newCard.querySelector(".element__info-place");
-  const newCardPicture = newCard.querySelector(".element__img");
-  newCardInfo.textContent = item.name;
-  newCardPicture.src = item.link;
-  newCardPicture.alt = item.name;
-  newCard
-    .querySelector(".element__info-heart")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__info-heart_type_disabled");
-    });
-  newCard
-    .querySelector(".element__trash")
-    .addEventListener("click", function (evt) {
-      evt.target.closest(".elements__item").remove();
-    });
-  newCardPicture.addEventListener("click", function (evt) {
-    fullPictureSrc.src = item.link;
-    fullPictureSubtitle.textContent = item.name;
-    openModal(fullPicture);
-  });
-
-  elementCardsContainer.prepend(newCard);
-} */
+import {
+  buttonProfileEdit,
+  popupWindows,
+  profileContainer,
+  profileName,
+  profileJob,
+  popupProfileContainer,
+  formUserInfo,
+  formUserName,
+  formUserJob,
+  buttonProfileSave,
+  popupPictureContainer,
+  formAddPicture,
+  formPictureName,
+  formPictureLink,
+  buttonPictureAdd,
+  buttonPictureSave,
+  fullPicture,
+  fullPictureSrc,
+  fullPictureSubtitle,
+  elementCardsContainer,
+  elementCardTemplate,
+  initialCards,
+} from "./data.js";
+import { Card } from "./card.js";
+import { openModal, closeModal, closeByEscape } from "./utils.js";
 
 function formProfileHandler(evt) {
   evt.preventDefault();
@@ -39,24 +32,17 @@ function formProfileHandler(evt) {
   closeModal(popupProfileContainer);
 }
 
+// функция взамен addCard
 function renderLoadCard(evt) {
   evt.preventDefault();
-  addCard({
-    name: formPictureName.value,
-    link: formPictureLink.value,
-  });
+  const card = new Card(
+    { name: formPictureName.value, link: formPictureLink.value },
+    "#template__element"
+  );
+  const cardElement = card.generateCard();
+  document.querySelector(".elements__list").prepend(cardElement);
   formAddPicture.reset();
   closeModal(popupPictureContainer);
-}
-
-function openModal(modal) {
-  modal.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
-}
-
-function closeModal(modal) {
-  modal.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
 }
 
 function openProfile() {
@@ -68,13 +54,6 @@ function openProfile() {
 function openAddPictureForm() {
   openModal(popupPictureContainer);
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
-}
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closeModal(openedPopup);
-  }
 }
 
 formAddPicture.addEventListener("submit", renderLoadCard);
@@ -94,10 +73,8 @@ popupWindows.forEach((popup) => {
   });
 });
 
-/* renderInitialCard(); */
-
 initialCards.forEach((item) => {
-    const card = new Card(item, "#template__element");
-    const cardElement = card.generateCard();
-    document.querySelector(".elements__list").prepend(cardElement);
-  });
+  const card = new Card(item, "#template__element");
+  const cardElement = card.generateCard();
+  document.querySelector(".elements__list").prepend(cardElement);
+});

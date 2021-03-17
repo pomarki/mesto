@@ -7,6 +7,10 @@ const setValidation = {
 	errorClass: 'popup__input-error_type_active',
 };
 
+class FormValidator {
+	constructor(data, form) {}
+	enableValidation() {}
+  }
 
 
 const showInputError = (formElement, inputElement, errorMessage, object) => {
