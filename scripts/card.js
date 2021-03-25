@@ -1,5 +1,6 @@
 import { openModal } from "./utils.js";
 import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
+export { Card };
 
 class Card {
   constructor(data, cardSelector) {
@@ -48,7 +49,6 @@ class Card {
     fullPictureSrc.src = this._link;
     fullPictureSubtitle.textContent = this._name;
     openModal(fullPicture);
-
   }
 
   generateCard() {
@@ -59,10 +59,9 @@ class Card {
     ).textContent = this._name;
     this._element.querySelector(".element__img").alt = this._name;
     this._setEventListeners();
+    document.querySelector(".elements__list").prepend(this._element);
     return this._element;
   }
 }
-
-export { Card };
 
 

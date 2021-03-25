@@ -6,6 +6,7 @@ const profileName = profileContainer.querySelector(".profile__name");
 const profileJob = profileContainer.querySelector(".profile__job");
 
 const popupProfileContainer = document.querySelector("#popup-profile");
+
 const formUserInfo = document.querySelector("form[name=user-info]");
 const formUserName = formUserInfo.querySelector("input[name=user-name]");
 const formUserJob = formUserInfo.querySelector("input[name=user-job]");
@@ -28,9 +29,6 @@ const fullPictureSrc = fullPicture.querySelector(".popup__picture-img");
 const fullPictureSubtitle = fullPicture.querySelector(
   ".popup__picture-subtitle"
 );
-
-const elementCardsContainer = document.querySelector(".elements__list");
-const elementCardTemplate = document.querySelector("#template__element");
 
 const initialCards = [
   {
@@ -65,5 +63,25 @@ const initialCards = [
   },
 ];
 
-export { buttonProfileEdit, popupWindows, profileContainer, profileName, profileJob, popupProfileContainer, formUserInfo, formUserName, formUserJob, buttonProfileSave, popupPictureContainer, formAddPicture, formPictureName, formPictureLink, buttonPictureAdd, buttonPictureSave, fullPicture,
-    fullPictureSrc, fullPictureSubtitle, elementCardsContainer, elementCardTemplate, initialCards};
+export {
+  buttonProfileEdit,
+  popupWindows,
+  profileContainer,
+  profileName,
+  profileJob,
+  popupProfileContainer,
+  formUserInfo,
+  formUserName,
+  formUserJob,
+  buttonProfileSave,
+  popupPictureContainer,
+  formAddPicture,
+  formPictureName,
+  formPictureLink,
+  buttonPictureAdd,
+  buttonPictureSave,
+  fullPicture,
+  fullPictureSrc,
+  fullPictureSubtitle,
+  initialCards,
+};

@@ -1,7 +1,6 @@
 import {
   buttonProfileEdit,
   popupWindows,
-  profileContainer,
   profileName,
   profileJob,
   popupProfileContainer,
@@ -15,15 +14,11 @@ import {
   formPictureLink,
   buttonPictureAdd,
   buttonPictureSave,
-  fullPicture,
-  fullPictureSrc,
-  fullPictureSubtitle,
-  elementCardsContainer,
-  elementCardTemplate,
   initialCards,
 } from "./data.js";
-import { Card } from "./card.js";
-import { openModal, closeModal, closeByEscape } from "./utils.js";
+import { Card } from "./Card.js";
+import { openModal, closeModal } from "./utils.js";
+import { setValidation, FormValidator } from "./FormValidator.js";
 
 function formProfileHandler(evt) {
   evt.preventDefault();
@@ -32,15 +27,13 @@ function formProfileHandler(evt) {
   closeModal(popupProfileContainer);
 }
 
-// функция взамен addCard
 function renderLoadCard(evt) {
   evt.preventDefault();
   const card = new Card(
     { name: formPictureName.value, link: formPictureLink.value },
     "#template__element"
   );
-  const cardElement = card.generateCard();
-  document.querySelector(".elements__list").prepend(cardElement);
+  card.generateCard();
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
@@ -75,6 +68,11 @@ popupWindows.forEach((popup) => {
 
 initialCards.forEach((item) => {
   const card = new Card(item, "#template__element");
-  const cardElement = card.generateCard();
-  document.querySelector(".elements__list").prepend(cardElement);
+  return card.generateCard();
 });
+
+const profileFormValidator = new FormValidator(setValidation, formUserInfo);
+profileFormValidator.enableValidation();
+
+const pictureFormValidator = new FormValidator(setValidation, formAddPicture);
+pictureFormValidator.enableValidation();
