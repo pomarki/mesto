@@ -1,4 +1,4 @@
-import { openModal } from "../scripts/utils.js";
+import { openModal } from "scripts/utils.js";
 import {
   fullPicture,
   fullPictureSrc,
