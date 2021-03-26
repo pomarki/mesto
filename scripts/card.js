@@ -3,7 +3,7 @@ import {
   fullPicture,
   fullPictureSrc,
   fullPictureSubtitle,
-} from "../scripts/data.js";
+} from "./data.js";
 export { Card };
 
 class Card {

@@ -85,5 +85,5 @@ export {
   fullPicture,
   fullPictureSrc,
   fullPictureSubtitle,
-  initialCards,
+  initialCards
 };

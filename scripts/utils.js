@@ -1,4 +1,4 @@
-import { escKeyValue } from "../scripts/data.js";
+import { escKeyValue } from "./data.js";
 
 export function openModal(modal) {
   modal.classList.add("popup_opened");
