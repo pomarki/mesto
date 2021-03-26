@@ -27,12 +27,15 @@ function formProfileHandler(evt) {
   closeModal(popupProfileContainer);
 }
 
+function renderCard(name, link) {
+  const card = new Card({ name, link }, "#template__element");
+  return card;
+}
+
 function renderLoadedCard(evt) {
   evt.preventDefault();
-  const card = new Card(
-    { name: formPictureName.value, link: formPictureLink.value },
-    "#template__element"
-  );
+
+  const card = renderCard(formPictureName.value, formPictureLink.value);
   card.generateCard();
   formAddPicture.reset();
   closeModal(popupPictureContainer);
@@ -67,7 +70,7 @@ popupWindows.forEach((popup) => {
 });
 
 initialCards.forEach((item) => {
-  const card = new Card(item, "#template__element");
+  const card = renderCard(item.name, item.link);
   return card.generateCard();
 });
 
