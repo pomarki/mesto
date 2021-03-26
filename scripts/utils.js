@@ -1,3 +1,5 @@
+import { escKeyValue } from "../scripts/data.js";
+
 export function openModal(modal) {
   modal.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
@@ -9,7 +11,7 @@ export function closeModal(modal) {
 }
 
 export function closeByEscape(evt) {
-    if (evt.key === "Escape") {
+    if (evt.key === escKeyValue) {
       const openedPopup = document.querySelector(".popup_opened");
       closeModal(openedPopup);
     }

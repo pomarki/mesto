@@ -8,12 +8,12 @@ const setValidation = {
 };
 class FormValidator {
   constructor(data, formElement) {
-    this._inputSelector = data.inputSelector; // поле инпута
-    this._submitButtonSelector = data.submitButtonSelector; // кнопка сабмита
-    this._inactiveButtonClass = data.inactiveButtonClass; // селектор неактивности кнопки
-    this._inputErrorClass = data.inputErrorClass; // селектор красной рамки
-    this._errorClass = data.errorClass; // селектор текста ошибки
-    this.formElement = formElement; // валидируемая форма
+    this._inputSelector = data.inputSelector;
+    this._submitButtonSelector = data.submitButtonSelector;
+    this._inactiveButtonClass = data.inactiveButtonClass;
+    this._inputErrorClass = data.inputErrorClass;
+    this._errorClass = data.errorClass;
+    this.formElement = formElement;
     this._inputList = Array.from(
       this.formElement.querySelectorAll(this._inputSelector)
     );
@@ -39,7 +39,6 @@ class FormValidator {
     errorElement.textContent = "";
   }
   _checkInputValidity() {
-    // поскольку инпуты - массив, надо воспользоваться методом обхода массива
     this._inputList.forEach((inputElement) => {
       if (!inputElement.validity.valid) {
         this._showInputError(inputElement);
@@ -63,7 +62,6 @@ class FormValidator {
     }
   }
   _setEventListeners() {
-    // ok
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
@@ -72,7 +70,6 @@ class FormValidator {
     });
   }
   enableValidation() {
-    // ok
     this.formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });

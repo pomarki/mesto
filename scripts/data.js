@@ -1,6 +1,7 @@
 const buttonProfileEdit = document.querySelector(".profile__edit-button");
 const popupWindows = document.querySelectorAll(".popup");
 const profileContainer = document.querySelector(".profile");
+const escKeyValue = 'Escape';
 
 const profileName = profileContainer.querySelector(".profile__name");
 const profileJob = profileContainer.querySelector(".profile__job");
@@ -67,6 +68,7 @@ export {
   buttonProfileEdit,
   popupWindows,
   profileContainer,
+  escKeyValue,
   profileName,
   profileJob,
   popupProfileContainer,
