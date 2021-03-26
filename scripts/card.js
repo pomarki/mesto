@@ -44,11 +44,8 @@ class Card {
       .classList.toggle("element__info-heart_type_disabled");
   }
   _trashIconClick() {
-    this._element
-      .querySelector(".element__trash")
-      .closest(".elements__item")
-      .remove();
-    this._element = "";
+    this._element.remove();
+    this._element = null;
   }
   _fullPictureOpen() {
     fullPictureSrc.src = this._link;
@@ -65,9 +62,8 @@ class Card {
     ).textContent = this._name;
     _elementImg.alt = this._name;
     this._setEventListeners();
-    document.querySelector(".elements__list").prepend(this._element);
+    /* document.querySelector(".elements__list").prepend(this._element); */
     
     return this._element;
   }
 }
-// ok

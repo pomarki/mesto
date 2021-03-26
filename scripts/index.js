@@ -29,6 +29,7 @@ function formProfileHandler(evt) {
 
 function renderCard(name, link) {
   const card = new Card({ name, link }, "#template__element");
+  document.querySelector(".elements__list").prepend(card);
   return card;
 }
 
@@ -73,7 +74,9 @@ popupWindows.forEach((popup) => {
 initialCards.forEach((item) => {
   const card = renderCard(item.name, item.link);
   return card.generateCard();
+
 });
+
 
 const profileFormValidator = new FormValidator(setValidation, formUserInfo);
 profileFormValidator.enableValidation();
