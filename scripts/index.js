@@ -27,7 +27,7 @@ function formProfileHandler(evt) {
   closeModal(popupProfileContainer);
 }
 
-function renderLoadCard(evt) {
+function renderLoadedCard(evt) {
   evt.preventDefault();
   const card = new Card(
     { name: formPictureName.value, link: formPictureLink.value },
@@ -49,7 +49,7 @@ function openAddPictureForm() {
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
 }
 
-formAddPicture.addEventListener("submit", renderLoadCard);
+formAddPicture.addEventListener("submit", renderLoadedCard);
 formUserInfo.addEventListener("submit", formProfileHandler);
 
 buttonPictureAdd.addEventListener("click", openAddPictureForm);

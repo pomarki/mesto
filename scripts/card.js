@@ -1,5 +1,9 @@
 import { openModal } from "../scripts/utils.js";
-import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "../scripts/data.js";
+import {
+  fullPicture,
+  fullPictureSrc,
+  fullPictureSubtitle,
+} from "../scripts/data.js";
 export { Card };
 
 class Card {
@@ -44,7 +48,7 @@ class Card {
       .querySelector(".element__trash")
       .closest(".elements__item")
       .remove();
-      this._element = "";
+    this._element = "";
   }
   _fullPictureOpen() {
     fullPictureSrc.src = this._link;
@@ -54,15 +58,15 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".element__img").src = this._link;
+    const _elementImg = this._element.querySelector(".element__img");
+    _elementImg.src = this._link;
     this._element.querySelector(
       ".element__info-place"
     ).textContent = this._name;
-    this._element.querySelector(".element__img").alt = this._name;
+    _elementImg.alt = this._name;
     this._setEventListeners();
     document.querySelector(".elements__list").prepend(this._element);
+    
     return this._element;
   }
 }
-
-
