@@ -1,5 +1,5 @@
-import { openModal } from "./utils.js";
-import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
+import { openModal } from "../scripts/utils.js";
+import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "../scripts/data.js";
 export { Card };
 
 class Card {
@@ -10,7 +10,7 @@ class Card {
   }
   _getTemplate() {
     const cardElement = document
-      .querySelector("#template__element")
+      .querySelector(this._cardSelector)
       .content.querySelector(".elements__item")
       .cloneNode(true);
     this._element = cardElement;
@@ -44,6 +44,7 @@ class Card {
       .querySelector(".element__trash")
       .closest(".elements__item")
       .remove();
+      this._element = "";
   }
   _fullPictureOpen() {
     fullPictureSrc.src = this._link;

@@ -15,10 +15,10 @@ import {
   buttonPictureAdd,
   buttonPictureSave,
   initialCards,
-} from "./data.js";
-import { Card } from "./Card.js";
-import { openModal, closeModal } from "./utils.js";
-import { setValidation, FormValidator } from "./FormValidator.js";
+} from "../scripts/data.js";
+import { Card } from "../scripts/Card.js";
+import { openModal, closeModal } from "../scripts/utils.js";
+import { setValidation, FormValidator } from "../scripts/FormValidator.js";
 
 function formProfileHandler(evt) {
   evt.preventDefault();
