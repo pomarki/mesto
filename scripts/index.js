@@ -16,7 +16,7 @@ import {
   buttonPictureSave,
   initialCards,
 } from "./data.js";
-import { Card } from "./Card.js";
+import { Card } from "./card.js";
 import { openModal, closeModal } from "./utils.js";
 import { setValidation, FormValidator } from "./FormValidator.js";
 
