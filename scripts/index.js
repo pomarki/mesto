@@ -50,6 +50,7 @@ function openProfile() {
 function openAddPictureForm() {
   openModal(popupPictureContainer);
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
+  buttonPictureSave.setAttribute("disabled", "disabled");
 }
 
 formAddPicture.addEventListener("submit", renderLoadedCard);
