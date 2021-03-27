@@ -1,9 +1,5 @@
 import { openModal } from "./utils.js";
-import {
-  fullPicture,
-  fullPictureSrc,
-  fullPictureSubtitle,
-} from "./data.js";
+import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
 export { Card };
 
 class Card {
@@ -62,8 +58,6 @@ class Card {
     ).textContent = this._name;
     _elementImg.alt = this._name;
     this._setEventListeners();
-    /* document.querySelector(".elements__list").prepend(this._element); */
-    
     return this._element;
   }
 }
