@@ -2,6 +2,7 @@ const buttonProfileEdit = document.querySelector(".profile__edit-button");
 const popupWindows = document.querySelectorAll(".popup");
 const profileContainer = document.querySelector(".profile");
 const escKeyValue = 'Escape';
+const elementList = document.querySelector(".elements__list");
 
 const profileName = profileContainer.querySelector(".profile__name");
 const profileJob = profileContainer.querySelector(".profile__job");
@@ -85,5 +86,6 @@ export {
   fullPicture,
   fullPictureSrc,
   fullPictureSubtitle,
-  initialCards
+  initialCards,
+  elementList
 };
