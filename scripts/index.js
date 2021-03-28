@@ -15,6 +15,7 @@ import {
   buttonPictureAdd,
   buttonPictureSave,
   initialCards,
+  elementList,
 } from "./data.js";
 import { Card } from "./card.js";
 import { openModal, closeModal } from "./utils.js";
@@ -29,12 +30,12 @@ function formProfileHandler(evt) {
 
 function renderCard(name, link) {
   const card = new Card({ name, link }, "#template__element");
-  document.querySelector(".elements__list").prepend(card.generateCard());
+  elementList.prepend(card.generateCard());
 }
 
 function renderLoadedCard(evt) {
   evt.preventDefault();
-  const card = renderCard(formPictureName.value, formPictureLink.value);
+  renderCard(formPictureName.value, formPictureLink.value);
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
@@ -69,8 +70,7 @@ popupWindows.forEach((popup) => {
 });
 
 initialCards.forEach((item) => {
-  const card = renderCard(item.name, item.link);
-  return card;
+  renderCard(item.name, item.link);
 });
 
 const profileFormValidator = new FormValidator(setValidation, formUserInfo);
