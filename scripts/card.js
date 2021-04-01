@@ -49,7 +49,7 @@ class Card {
     openModal(fullPicture);
   }
 
-  generateCard() {
+  generateCard() { 
     this._element = this._getTemplate();
     const _elementImg = this._element.querySelector(".element__img");
     _elementImg.src = this._link;

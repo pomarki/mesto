@@ -35,33 +35,35 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      renderCard(item.name, item.link);
+      const card = new Card(item, "#template__element");
+      const cardElement = card.generateCard();
+      cardsList.addItem(cardElement);
     },
   },
-  "#template__element"
+  elementList
 );
 cardsList.renderItems();
 
-function renderCard(name, link) {
+/* function renderCard(name, link) {
   const card = new Card({ name, link }, "#template__element");
   elementList.prepend(card.generateCard());
-}
+} */
 
 function renderLoadedCard(evt) {
   evt.preventDefault();
- 
   const newCard = new Section(
     {
-      items: [{name: formPictureName.value, link: formPictureLink.value}],
+      items: [{ name: formPictureName.value, link: formPictureLink.value }],
       renderer: (item) => {
-        renderCard(item.name, item.link);
+        const card = new Card(item, "#template__element");
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement);
       },
-
     },
-    "#template__element"
-  )
-  newCard.renderItems()
-  
+    elementList
+  );
+  newCard.renderItems();
+
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
@@ -99,7 +101,7 @@ popupWindows.forEach((popup) => {
   });
 });
 
-/* initialCards.forEach((item) => {
+/* initialCards.forEach((item) => { // - это надо перенести в addItem класса Section
   renderCard(item.name, item.link);
 }); */
 
