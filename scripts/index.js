@@ -23,12 +23,15 @@ import { openModal, closeModal } from "./utils.js";
 import { setValidation, FormValidator } from "./FormValidator.js";
 import { UserInfo } from "./UserInfo.js";
 import { Section } from "./Section.js";
+import { Popup } from "./Popup.js";
 
 function formProfileHandler(evt) {
   evt.preventDefault();
+  const popup = new Popup(popupProfileContainer);
   profileName.textContent = formUserName.value; // вписывает на сайт имя из инпута
   profileJob.textContent = formUserJob.value; // вписывает на сайт профессию из инпута
-  closeModal(popupProfileContainer);
+  /* closeModal(popupProfileContainer); */
+  popup.close();
 }
 
 const cardsList = new Section(
@@ -69,17 +72,21 @@ function renderLoadedCard(evt) {
 }
 
 function openProfile() {
-  openModal(popupProfileContainer);
+  const popup = new Popup(popupProfileContainer)
+  popup.open()
+  /* openModal(popupProfileContainer); */
 
-  /* formUserName.value = profileName.textContent; // подставляет в качестве значения инпута имя со страницы
-  formUserJob.value = profileJob.textContent; // подставляет в качестве значения инпута профессию со страницы */
-  const UserInfoCard = new UserInfo({ formUserName, formUserJob });
-  UserInfoCard.getUserInfo();
+  formUserName.value = profileName.textContent; // подставляет в качестве значения инпута имя со страницы
+  formUserJob.value = profileJob.textContent; // подставляет в качестве значения инпута профессию со страницы
+  /* const UserInfoCard = new UserInfo({ formUserName, formUserJob }); */
+  /* UserInfoCard.getUserInfo(); */
 
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
 }
 function openAddPictureForm() {
-  openModal(popupPictureContainer);
+  const popup = new Popup(popupPictureContainer);
+  popup.open();
+  /* openModal(popupPictureContainer); */
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
   buttonPictureSave.setAttribute("disabled", "disabled");
 }
@@ -90,7 +97,7 @@ formUserInfo.addEventListener("submit", formProfileHandler);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
 
-popupWindows.forEach((popup) => {
+/* popupWindows.forEach((popup) => {
   popup.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
       closeModal(popup);
@@ -99,7 +106,7 @@ popupWindows.forEach((popup) => {
       closeModal(popup);
     }
   });
-});
+}); */
 
 /* initialCards.forEach((item) => { // - это надо перенести в addItem класса Section
   renderCard(item.name, item.link);
