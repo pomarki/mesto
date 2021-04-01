@@ -7,12 +7,14 @@ const elementList = document.querySelector(".elements__list");
 const profileName = profileContainer.querySelector(".profile__name");
 const profileJob = profileContainer.querySelector(".profile__job");
 
+
 const popupProfileContainer = document.querySelector("#popup-profile");
 
 const formUserInfo = document.querySelector("form[name=user-info]");
 const formUserName = formUserInfo.querySelector("input[name=user-name]");
 const formUserJob = formUserInfo.querySelector("input[name=user-job]");
 const buttonProfileSave = formUserInfo.querySelector(".popup__save-button");
+const profileInputList = Array.from(formUserInfo.querySelectorAll(".popup__text-field"));
 
 const popupPictureContainer = document.querySelector("#popup-add-picture");
 const formAddPicture = document.querySelector("form[name=add-picture]");
@@ -87,5 +89,6 @@ export {
   fullPictureSrc,
   fullPictureSubtitle,
   initialCards,
-  elementList
+  elementList,
+  profileInputList
 };

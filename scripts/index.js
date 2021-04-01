@@ -16,17 +16,31 @@ import {
   buttonPictureSave,
   initialCards,
   elementList,
+  profileInputList,
 } from "./data.js";
 import { Card } from "./card.js";
 import { openModal, closeModal } from "./utils.js";
 import { setValidation, FormValidator } from "./FormValidator.js";
+import { UserInfo } from "./UserInfo.js";
+import { Section } from "./Section.js";
 
 function formProfileHandler(evt) {
   evt.preventDefault();
-  profileName.textContent = formUserName.value;
-  profileJob.textContent = formUserJob.value;
+  profileName.textContent = formUserName.value; // вписывает на сайт имя из инпута
+  profileJob.textContent = formUserJob.value; // вписывает на сайт профессию из инпута
   closeModal(popupProfileContainer);
 }
+
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      renderCard(item.name, item.link);
+    },
+  },
+  "#template__element"
+);
+cardsList.renderItems();
 
 function renderCard(name, link) {
   const card = new Card({ name, link }, "#template__element");
@@ -35,15 +49,31 @@ function renderCard(name, link) {
 
 function renderLoadedCard(evt) {
   evt.preventDefault();
-  renderCard(formPictureName.value, formPictureLink.value);
+ 
+  const newCard = new Section(
+    {
+      items: [{name: formPictureName.value, link: formPictureLink.value}],
+      renderer: (item) => {
+        renderCard(item.name, item.link);
+      },
+
+    },
+    "#template__element"
+  )
+  newCard.renderItems()
+  
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
 
 function openProfile() {
   openModal(popupProfileContainer);
-  formUserName.value = profileName.textContent;
-  formUserJob.value = profileJob.textContent;
+
+  /* formUserName.value = profileName.textContent; // подставляет в качестве значения инпута имя со страницы
+  formUserJob.value = profileJob.textContent; // подставляет в качестве значения инпута профессию со страницы */
+  const UserInfoCard = new UserInfo({ formUserName, formUserJob });
+  UserInfoCard.getUserInfo();
+
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
 }
 function openAddPictureForm() {
@@ -69,12 +99,17 @@ popupWindows.forEach((popup) => {
   });
 });
 
-initialCards.forEach((item) => {
+/* initialCards.forEach((item) => {
   renderCard(item.name, item.link);
-});
+}); */
 
 const profileFormValidator = new FormValidator(setValidation, formUserInfo);
 profileFormValidator.enableValidation();
 
 const pictureFormValidator = new FormValidator(setValidation, formAddPicture);
 pictureFormValidator.enableValidation();
+
+/* const UserInfoCard = new UserInfo({ formUserName, formUserJob });
+console.log(UserInfoCard.getUserInfo()); */
+
+/* console.log(profileInputList); */

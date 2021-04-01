@@ -1,6 +1,13 @@
-// items — это массив данных, которые нужно добавить на страницу при инициализации класса
-// renderer — это функция, которая отвечает за создание и отрисовку данных на странице.
 export class Section {
-    constructor({items, renderer}, formSelector) {}
-    addItem() {}
+  constructor({ items, renderer }, formSelector) {
+    this._renderedItems = items;
+    this._renderer = renderer;
+    this._container = document.querySelector(formSelector);
+  }
+  renderItems() {
+    this._renderedItems.forEach((item) => this._renderer(item));
+  }
+  addItem(element) {
+    this._container.append(element);
+  }
 }
