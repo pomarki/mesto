@@ -73,7 +73,8 @@ function renderLoadedCard(evt) {
 
 function openProfile() {
   const popup = new Popup(popupProfileContainer)
-  popup.open()
+  popup.open();
+  popup.setEventListeners();
   /* openModal(popupProfileContainer); */
 
   formUserName.value = profileName.textContent; // подставляет в качестве значения инпута имя со страницы
@@ -82,10 +83,13 @@ function openProfile() {
   /* UserInfoCard.getUserInfo(); */
 
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
+  
 }
 function openAddPictureForm() {
   const popup = new Popup(popupPictureContainer);
+  
   popup.open();
+  popup.setEventListeners();
   /* openModal(popupPictureContainer); */
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
   buttonPictureSave.setAttribute("disabled", "disabled");
@@ -97,7 +101,7 @@ formUserInfo.addEventListener("submit", formProfileHandler);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
 
-/* popupWindows.forEach((popup) => {
+popupWindows.forEach((popup) => {
   popup.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
       closeModal(popup);
@@ -106,9 +110,9 @@ buttonProfileEdit.addEventListener("click", openProfile);
       closeModal(popup);
     }
   });
-}); */
+});
 
-/* initialCards.forEach((item) => { // - это надо перенести в addItem класса Section
+/* initialCards.forEach((item) => { 
   renderCard(item.name, item.link);
 }); */
 
