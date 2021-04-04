@@ -5,11 +5,9 @@ export class Section {
     this._container = formSelector;
   }
   renderItems() {
-    // отвечает за отрисовку элемента
     this._renderedItems.forEach((item) => this._renderer(item));
   }
   addItem(element) {
-    // добавляет отрисованный элемент в DOM
     this._container.prepend(element);
   }
 }

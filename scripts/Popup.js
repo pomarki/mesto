@@ -3,18 +3,16 @@ import { closeByEscape } from "./utils.js";
 class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
-   this._closeButton = this._popupSelector.querySelector(".popup__close-button")
+    this._closeButton = this._popupSelector.querySelector(
+      ".popup__close-button"
+    );
   }
-
   open() {
     this._popupSelector.classList.add("popup_opened");
-    console.log(this._closeButton)
     this._handleEscClose();
-    
   }
   close() {
     this._popupSelector.classList.remove("popup_opened");
-    this._handleEscClose();
   }
   _handleEscClose() {
     document.addEventListener("keydown", (evt) => {
@@ -26,7 +24,7 @@ class Popup {
   setEventListeners() {
     this._closeButton.addEventListener("click", () => {
       this._popupSelector.classList.remove("popup_opened");
-    })
+    });
   }
 }
 export { Popup };

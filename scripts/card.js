@@ -3,10 +3,11 @@ import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
 export { Card };
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this.handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -28,11 +29,11 @@ class Card {
       .addEventListener("click", () => {
         this._heartIconClick();
       });
-    this._element
+   /*  this._element
       .querySelector(".element__img")
       .addEventListener("click", () => {
-        this._fullPictureOpen();
-      });
+        this.handleCardClick();
+      }); */
   }
   _heartIconClick() {
     this._element
@@ -43,11 +44,11 @@ class Card {
     this._element.remove();
     this._element = null;
   }
-  _fullPictureOpen() {
+  /* _fullPictureOpen() {
     fullPictureSrc.src = this._link;
     fullPictureSubtitle.textContent = this._name;
     openModal(fullPicture);
-  }
+  } */
 
   generateCard() { 
     this._element = this._getTemplate();

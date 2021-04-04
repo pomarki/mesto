@@ -17,6 +17,7 @@ import {
   initialCards,
   elementList,
   profileInputList,
+  fullPictureSrc,
 } from "./data.js";
 import { Card } from "./card.js";
 import { openModal, closeModal } from "./utils.js";
@@ -24,15 +25,8 @@ import { setValidation, FormValidator } from "./FormValidator.js";
 import { UserInfo } from "./UserInfo.js";
 import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
-
-function formProfileHandler(evt) {
-  evt.preventDefault();
-  const popup = new Popup(popupProfileContainer);
-  profileName.textContent = formUserName.value; // вписывает на сайт имя из инпута
-  profileJob.textContent = formUserJob.value; // вписывает на сайт профессию из инпута
-  /* closeModal(popupProfileContainer); */
-  popup.close();
-}
+import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithForm } from "./PopupWithForm.js";
 
 const cardsList = new Section(
   {
@@ -46,11 +40,6 @@ const cardsList = new Section(
   elementList
 );
 cardsList.renderItems();
-
-/* function renderCard(name, link) {
-  const card = new Card({ name, link }, "#template__element");
-  elementList.prepend(card.generateCard());
-} */
 
 function renderLoadedCard(evt) {
   evt.preventDefault();
@@ -71,32 +60,37 @@ function renderLoadedCard(evt) {
   closeModal(popupPictureContainer);
 }
 
+const popupProfile = new PopupWithForm(popupProfileContainer, () => {
+  profileName.textContent = formUserName.value;
+  profileJob.textContent = formUserJob.value;
+  popupProfile.close();
+});
+popupProfile.setEventListeners();
+
 function openProfile() {
-  const popup = new Popup(popupProfileContainer)
-  popup.open();
-  popup.setEventListeners();
-  /* openModal(popupProfileContainer); */
-
-  formUserName.value = profileName.textContent; // подставляет в качестве значения инпута имя со страницы
-  formUserJob.value = profileJob.textContent; // подставляет в качестве значения инпута профессию со страницы
-  /* const UserInfoCard = new UserInfo({ formUserName, formUserJob }); */
-  /* UserInfoCard.getUserInfo(); */
-
+  popupProfile.open();
+  formUserName.value = profileName.textContent;
+  formUserJob.value = profileJob.textContent;
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
-  
 }
+
+const popupAddPicture = new PopupWithForm(popupPictureContainer, () => {
+
+});
+
+popupAddPicture.setEventListeners();
+
 function openAddPictureForm() {
-  const popup = new Popup(popupPictureContainer);
   
-  popup.open();
-  popup.setEventListeners();
+
+  popupAddPicture.open();
+  
   /* openModal(popupPictureContainer); */
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
   buttonPictureSave.setAttribute("disabled", "disabled");
 }
 
 formAddPicture.addEventListener("submit", renderLoadedCard);
-formUserInfo.addEventListener("submit", formProfileHandler);
 
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
@@ -112,17 +106,8 @@ popupWindows.forEach((popup) => {
   });
 });
 
-/* initialCards.forEach((item) => { 
-  renderCard(item.name, item.link);
-}); */
-
 const profileFormValidator = new FormValidator(setValidation, formUserInfo);
 profileFormValidator.enableValidation();
 
 const pictureFormValidator = new FormValidator(setValidation, formAddPicture);
 pictureFormValidator.enableValidation();
-
-/* const UserInfoCard = new UserInfo({ formUserName, formUserJob });
-console.log(UserInfoCard.getUserInfo()); */
-
-/* console.log(profileInputList); */
