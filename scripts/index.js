@@ -70,18 +70,27 @@ function renderLoadedCard(evt) {
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
+const userInfo = new UserInfo({name:profileName, job:profileJob});
 
 const popupProfile = new PopupWithForm(popupProfileContainer, () => {
-  profileName.textContent = formUserName.value;
-  profileJob.textContent = formUserJob.value;
+ /*  profileName.textContent = userInfo.setUserInfo().name;
+  profileJob.textContent = userInfo.setUserInfo().job; */
+  profileName.textContent = popupProfile._getInputValues();
+  profileJob.textContent = popupProfile._getInputValues();
+  
+  console.log(this._formValues)
   popupProfile.close();
 });
 popupProfile.setEventListeners();
+console.log(popupProfile._getInputValues())
+
+
+console.log(userInfo.getUserInfo())
 
 function openProfile() {
   popupProfile.open();
-  formUserName.value = profileName.textContent;
-  formUserJob.value = profileJob.textContent;
+  formUserName.value = userInfo.getUserInfo().name;
+  formUserJob.value = userInfo.getUserInfo().job;
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
 }
 
@@ -104,9 +113,6 @@ popupWindows.forEach((popup) => {
     if (evt.target.classList.contains("popup_opened")) {
       closeModal(popup);
     }
-   /*  if (evt.target.classList.contains("popup__close-button")) {
-      closeModal(popup);
-    }  */
   });
 });
 

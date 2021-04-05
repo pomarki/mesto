@@ -25,6 +25,7 @@ class Popup {
     this._closeButton.addEventListener("click", () => {
       this._popupSelector.classList.remove("popup_opened");
     });
+    
   }
 }
 export { Popup };

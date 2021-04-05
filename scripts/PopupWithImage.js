@@ -16,6 +16,7 @@ class PopupWithImage extends Popup {
     this._popupPictureSubtitle.textContent = name;
     this._popupPictureLink.src = link;
     this._popupSelector.classList.add("popup_opened");
+    this._handleEscClose();
   }
   
 }
