@@ -18,6 +18,8 @@ import {
   elementList,
   profileInputList,
   fullPictureSrc,
+  fullPicture,
+  popupFullPictureContainer,
 } from "./data.js";
 import { Card } from "./card.js";
 import { openModal, closeModal } from "./utils.js";
@@ -28,11 +30,18 @@ import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 
+const popupFullPicture = new PopupWithImage(popupFullPictureContainer);
+
+popupFullPicture.setEventListeners()
+
 const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#template__element");
+      const card = new Card(item, "#template__element", () => {
+         //handleCardClick
+        popupFullPicture.open(item.link, item.name)
+      });
       const cardElement = card.generateCard();
       cardsList.addItem(cardElement);
     },
@@ -47,7 +56,9 @@ function renderLoadedCard(evt) {
     {
       items: [{ name: formPictureName.value, link: formPictureLink.value }],
       renderer: (item) => {
-        const card = new Card(item, "#template__element");
+        const card = new Card(item, "#template__element", () => {
+          //handleCardClick
+        });
         const cardElement = card.generateCard();
         cardsList.addItem(cardElement);
       },
@@ -74,24 +85,17 @@ function openProfile() {
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
 }
 
-const popupAddPicture = new PopupWithForm(popupPictureContainer, () => {
-
-});
-
+const popupAddPicture = new PopupWithForm(popupPictureContainer, () => {});
 popupAddPicture.setEventListeners();
 
 function openAddPictureForm() {
-  
-
   popupAddPicture.open();
-  
-  /* openModal(popupPictureContainer); */
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
   buttonPictureSave.setAttribute("disabled", "disabled");
 }
 
-formAddPicture.addEventListener("submit", renderLoadedCard);
 
+formAddPicture.addEventListener("submit", renderLoadedCard);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
 
@@ -100,9 +104,9 @@ popupWindows.forEach((popup) => {
     if (evt.target.classList.contains("popup_opened")) {
       closeModal(popup);
     }
-    if (evt.target.classList.contains("popup__close-button")) {
+   /*  if (evt.target.classList.contains("popup__close-button")) {
       closeModal(popup);
-    }
+    }  */
   });
 });
 

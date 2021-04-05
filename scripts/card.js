@@ -29,11 +29,11 @@ class Card {
       .addEventListener("click", () => {
         this._heartIconClick();
       });
-   /*  this._element
+    this._element
       .querySelector(".element__img")
       .addEventListener("click", () => {
         this.handleCardClick();
-      }); */
+      });
   }
   _heartIconClick() {
     this._element
@@ -44,13 +44,13 @@ class Card {
     this._element.remove();
     this._element = null;
   }
-  /* _fullPictureOpen() {
+ /*  _fullPictureOpen() {
     fullPictureSrc.src = this._link;
     fullPictureSubtitle.textContent = this._name;
     openModal(fullPicture);
-  } */
-
-  generateCard() { 
+  }
+ */
+  generateCard() {
     this._element = this._getTemplate();
     const _elementImg = this._element.querySelector(".element__img");
     _elementImg.src = this._link;

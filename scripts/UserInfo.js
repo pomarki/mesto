@@ -13,7 +13,7 @@ class UserInfo {
     this._job = job; // селектор профессии пользователя на странице
   }
   getUserInfo() {
-    const actualUserInfo = {
+    const actualUserInfo = { // - данные пользователя на странице ставим в инпуты
       name: profileName.textContent,
       job: profileJob.textContent,
     };

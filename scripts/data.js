@@ -9,6 +9,7 @@ const profileJob = profileContainer.querySelector(".profile__job");
 
 
 const popupProfileContainer = document.querySelector("#popup-profile");
+const popupFullPictureContainer = document.querySelector("#popup-full-picture");
 
 const formUserInfo = document.querySelector("form[name=user-info]");
 const formUserName = formUserInfo.querySelector("input[name=user-name]");
@@ -90,5 +91,6 @@ export {
   fullPictureSubtitle,
   initialCards,
   elementList,
-  profileInputList
+  profileInputList,
+  popupFullPictureContainer
 };
