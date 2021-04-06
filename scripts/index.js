@@ -32,15 +32,14 @@ import { PopupWithForm } from "./PopupWithForm.js";
 
 const popupFullPicture = new PopupWithImage(popupFullPictureContainer);
 
-popupFullPicture.setEventListeners()
+popupFullPicture.setEventListeners();
 
 const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
       const card = new Card(item, "#template__element", () => {
-         //handleCardClick
-        popupFullPicture.open(item.link, item.name)
+        popupFullPicture.open(item.link, item.name);
       });
       const cardElement = card.generateCard();
       cardsList.addItem(cardElement);
@@ -57,7 +56,7 @@ function renderLoadedCard(evt) {
       items: [{ name: formPictureName.value, link: formPictureLink.value }],
       renderer: (item) => {
         const card = new Card(item, "#template__element", () => {
-          //handleCardClick
+          popupFullPicture.open(item.link, item.name);
         });
         const cardElement = card.generateCard();
         cardsList.addItem(cardElement);
@@ -70,17 +69,14 @@ function renderLoadedCard(evt) {
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
-const userInfo = new UserInfo({name:profileName, job:profileJob});
+const userInfo = new UserInfo({ name: profileName, job: profileJob });
 
 const popupProfile = new PopupWithForm(popupProfileContainer, () => {
- /*  profileName.textContent = userInfo.setUserInfo().name;
-  profileJob.textContent = userInfo.setUserInfo().job; */
   profileName.textContent = userInfo.setUserInfo().name;
   profileJob.textContent = userInfo.setUserInfo().job;
-  /* console.log(userInfo.setUserInfo()) */
-  /* console.log(popupProfile._getInputValues()["user-name"]) */
   popupProfile.close();
 });
+
 popupProfile.setEventListeners();
 
 function openProfile() {
@@ -98,7 +94,6 @@ function openAddPictureForm() {
   buttonPictureSave.classList.add("popup__save-button_type_disabled");
   buttonPictureSave.setAttribute("disabled", "disabled");
 }
-
 
 formAddPicture.addEventListener("submit", renderLoadedCard);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
