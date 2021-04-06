@@ -6,6 +6,7 @@ class Popup {
     this._closeButton = this._popupSelector.querySelector(
       ".popup__close-button"
     );
+    /* this._popupOverlays = document.querySelectorAll(".popup_opened") */
   }
   open() {
     this._popupSelector.classList.add("popup_opened");
@@ -25,6 +26,9 @@ class Popup {
     this._closeButton.addEventListener("click", () => {
       this._popupSelector.classList.remove("popup_opened");
     });
+  /*     this._popupOverlays.addEventListener("click", () => {
+        this._popupSelector.classList.remove("popup_opened");
+      }); */
     
   }
 }

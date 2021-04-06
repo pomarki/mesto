@@ -75,17 +75,13 @@ const userInfo = new UserInfo({name:profileName, job:profileJob});
 const popupProfile = new PopupWithForm(popupProfileContainer, () => {
  /*  profileName.textContent = userInfo.setUserInfo().name;
   profileJob.textContent = userInfo.setUserInfo().job; */
-  profileName.textContent = popupProfile._getInputValues();
-  profileJob.textContent = popupProfile._getInputValues();
-  
-  console.log(this._formValues)
+  profileName.textContent = userInfo.setUserInfo().name;
+  profileJob.textContent = userInfo.setUserInfo().job;
+  /* console.log(userInfo.setUserInfo()) */
+  /* console.log(popupProfile._getInputValues()["user-name"]) */
   popupProfile.close();
 });
 popupProfile.setEventListeners();
-console.log(popupProfile._getInputValues())
-
-
-console.log(userInfo.getUserInfo())
 
 function openProfile() {
   popupProfile.open();
