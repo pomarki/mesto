@@ -1,6 +1,5 @@
 import {
   buttonProfileEdit,
-  popupWindows,
   profileName,
   profileJob,
   popupProfileContainer,
@@ -16,22 +15,17 @@ import {
   buttonPictureSave,
   initialCards,
   elementList,
-  profileInputList,
-  fullPictureSrc,
-  fullPicture,
   popupFullPictureContainer,
 } from "./data.js";
 import { Card } from "./card.js";
-import { openModal, closeModal } from "./utils.js";
+import { closeModal } from "./utils.js";
 import { setValidation, FormValidator } from "./FormValidator.js";
 import { UserInfo } from "./UserInfo.js";
 import { Section } from "./Section.js";
-import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 
 const popupFullPicture = new PopupWithImage(popupFullPictureContainer);
-
 popupFullPicture.setEventListeners();
 
 const cardsList = new Section(
@@ -98,14 +92,6 @@ function openAddPictureForm() {
 formAddPicture.addEventListener("submit", renderLoadedCard);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
-
-popupWindows.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("popup_opened")) {
-      closeModal(popup);
-    }
-  });
-});
 
 const profileFormValidator = new FormValidator(setValidation, formUserInfo);
 profileFormValidator.enableValidation();

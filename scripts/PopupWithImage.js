@@ -1,6 +1,4 @@
 import { Popup } from "./Popup.js";
-import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
-import { openModal } from "./utils.js";
 
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -18,6 +16,5 @@ class PopupWithImage extends Popup {
     this._popupSelector.classList.add("popup_opened");
     this._handleEscClose();
   }
-  
 }
 export { PopupWithImage };

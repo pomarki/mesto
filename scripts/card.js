@@ -1,5 +1,3 @@
-import { openModal } from "./utils.js";
-import { fullPicture, fullPictureSrc, fullPictureSubtitle } from "./data.js";
 export { Card };
 
 class Card {
@@ -44,12 +42,7 @@ class Card {
     this._element.remove();
     this._element = null;
   }
- /*  _fullPictureOpen() {
-    fullPictureSrc.src = this._link;
-    fullPictureSubtitle.textContent = this._name;
-    openModal(fullPicture);
-  }
- */
+
   generateCard() {
     this._element = this._getTemplate();
     const _elementImg = this._element.querySelector(".element__img");

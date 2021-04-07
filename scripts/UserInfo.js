@@ -1,12 +1,4 @@
-import {
-  formUserInfo,
-  formUserName,
-  formUserJob,
-  buttonProfileSave,
-  profileName,
-  profileJob,
-  popupProfileContainer,
-} from "./data.js";
+import { formUserInfo, popupProfileContainer } from "./data.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 
 class UserInfo {
@@ -19,19 +11,18 @@ class UserInfo {
   }
   getUserInfo() {
     const actualUserInfo = {
-      // - данные пользователя на странице ставим в инпуты
       name: this._actualName,
       job: this._actualJob,
     };
     return actualUserInfo;
   }
   setUserInfo() {
-    const _actualForm = this._popupForm._getInputValues()
+    const _actualForm = this._popupForm._getInputValues();
     this._actualName = _actualForm["user-name"];
     this._actualJob = _actualForm["user-job"];
-    const newUserInfo = {name: this._actualName, job: this._actualJob};
+    const newUserInfo = { name: this._actualName, job: this._actualJob };
     return newUserInfo;
-  } // принимает новые данные пользователя и добавляет их на страницу
+  }
 }
 
 export { UserInfo };
