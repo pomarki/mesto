@@ -1,8 +1,8 @@
 import { escKeyValue } from "./data.js";
 
 class Popup {
-  constructor(popupSelector) {
-    this._popupSelector = popupSelector;
+  constructor(popupContainer) {
+    this._popupSelector = document.querySelector(popupContainer);
     this._closeButton = this._popupSelector.querySelector(
       ".popup__close-button"
     );
@@ -10,6 +10,7 @@ class Popup {
   open() {
     this._popupSelector.classList.add("popup_opened");
     this._handleEscClose();
+    
   }
   close() {
     this._popupSelector.classList.remove("popup_opened");

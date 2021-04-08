@@ -25,17 +25,21 @@ import { Section } from "./Section.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 
-const popupFullPicture = new PopupWithImage(popupFullPictureContainer);
+const popupFullPicture = new PopupWithImage("#popup-full-picture");
 popupFullPicture.setEventListeners();
+
+function createCard(item) {
+  const card = new Card(item, "#template__element", () => {
+    popupFullPicture.open(item.link, item.name);
+  });
+  return card.generateCard();
+}
 
 const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#template__element", () => {
-        popupFullPicture.open(item.link, item.name);
-      });
-      const cardElement = card.generateCard();
+      const cardElement = createCard(item);
       cardsList.addItem(cardElement);
     },
   },
@@ -49,10 +53,7 @@ function renderLoadedCard(evt) {
     {
       items: [{ name: formPictureName.value, link: formPictureLink.value }],
       renderer: (item) => {
-        const card = new Card(item, "#template__element", () => {
-          popupFullPicture.open(item.link, item.name);
-        });
-        const cardElement = card.generateCard();
+        const cardElement = createCard(item);
         cardsList.addItem(cardElement);
       },
     },
@@ -65,7 +66,7 @@ function renderLoadedCard(evt) {
 }
 const userInfo = new UserInfo({ name: profileName, job: profileJob });
 
-const popupProfile = new PopupWithForm(popupProfileContainer, () => {
+const popupProfile = new PopupWithForm("#popup-profile", () => {
   profileName.textContent = userInfo.setUserInfo().name;
   profileJob.textContent = userInfo.setUserInfo().job;
   popupProfile.close();
@@ -74,13 +75,14 @@ const popupProfile = new PopupWithForm(popupProfileContainer, () => {
 popupProfile.setEventListeners();
 
 function openProfile() {
+  const userData = userInfo.getUserInfo();
   popupProfile.open();
-  formUserName.value = userInfo.getUserInfo().name;
-  formUserJob.value = userInfo.getUserInfo().job;
+  formUserName.value = userData.name;
+  formUserJob.value = userData.job;
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
 }
 
-const popupAddPicture = new PopupWithForm(popupPictureContainer, () => {});
+const popupAddPicture = new PopupWithForm("#popup-add-picture", () => {});
 popupAddPicture.setEventListeners();
 
 function openAddPictureForm() {

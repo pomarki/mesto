@@ -11,10 +11,9 @@ class PopupWithImage extends Popup {
     );
   }
   open(link, name) {
+    super.open();
     this._popupPictureSubtitle.textContent = name;
     this._popupPictureLink.src = link;
-    this._popupSelector.classList.add("popup_opened");
-    this._handleEscClose();
   }
 }
 export { PopupWithImage };

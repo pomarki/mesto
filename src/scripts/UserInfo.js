@@ -5,9 +5,9 @@ class UserInfo {
   constructor(object) {
     this._actualName = object.name.textContent;
     this._actualJob = object.job.textContent;
-    this._inputName = formUserInfo.querySelector("#user-name").value;
-    this._inputJob = formUserInfo.querySelector("#user-job").value;
-    this._popupForm = new PopupWithForm(popupProfileContainer);
+    /* this._inputName = formUserInfo.querySelector("#user-name").value;
+    this._inputJob = formUserInfo.querySelector("#user-job").value; */
+    /* this._popupForm = new PopupWithForm(document.querySelector("#popup-profile"); */
   }
   getUserInfo() {
     const actualUserInfo = {

@@ -53,6 +53,15 @@ const initialCards = [
   },
 ];
 
+const setValidation = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__text-field",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_type_disabled",
+  inputErrorClass: "popup__text-field_type_error",
+  errorClass: "popup__input-error_type_active",
+};
+
 export {
   buttonProfileEdit,
   profileContainer,
@@ -73,4 +82,5 @@ export {
   initialCards,
   elementList,
   popupFullPictureContainer,
+  setValidation,
 };
