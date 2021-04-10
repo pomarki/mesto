@@ -7,7 +7,7 @@ class PopupWithForm extends Popup {
     this._popupForm = this._popupSelector.querySelector(".popup__form");
     this._inputList = this._popupForm.querySelectorAll(".popup__text-field");
   }
-  _getInputValues() { // эта функция должна передаваться в колбэк
+  _getInputValues() {
     this._formValues = {};
     this._inputList.forEach(
       (input) => (this._formValues[input.name] = input.value)
@@ -17,11 +17,13 @@ class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", () => {
-      this.callbackSubmitForm();
+      const newFormValues = this._getInputValues();
+      this.callbackSubmitForm(newFormValues);
     });
   }
   close() {
     this._popupSelector.classList.remove("popup_opened");
+
     this._popupForm.reset();
   }
 }

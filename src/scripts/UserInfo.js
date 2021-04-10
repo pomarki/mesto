@@ -2,25 +2,24 @@ import { formUserInfo, popupProfileContainer } from "./data.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 
 class UserInfo {
-  constructor(object) {
-    this._actualName = object.name.textContent;
-    this._actualJob = object.job.textContent;
-    /* this._inputName = formUserInfo.querySelector("#user-name").value;
-    this._inputJob = formUserInfo.querySelector("#user-job").value; */
-    /* this._popupForm = new PopupWithForm(document.querySelector("#popup-profile"); */
+  constructor(nameSelector, jobSelector) {
+    this._profileName = document.querySelector(nameSelector);
+    this._profileJob = document.querySelector(jobSelector);
   }
   getUserInfo() {
     const actualUserInfo = {
-      name: this._actualName,
-      job: this._actualJob,
+      name: this._profileName.textContent,
+      job: this._profileJob.textContent,
     };
     return actualUserInfo;
   }
-  setUserInfo() {
-    const _actualForm = this._popupForm._getInputValues();
-    this._actualName = _actualForm["user-name"];
-    this._actualJob = _actualForm["user-job"];
-    const newUserInfo = { name: this._actualName, job: this._actualJob };
+  setUserInfo(object) {
+    this._profileName.textContent = object["user-name"];
+    this._profileJob.textContent = object["user-job"];
+    const newUserInfo = {
+      name: this._profileName.textContent,
+      job: this._profileJob.textContent,
+    };
     return newUserInfo;
   }
 }

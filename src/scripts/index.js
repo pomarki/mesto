@@ -64,11 +64,12 @@ function renderLoadedCard(evt) {
   formAddPicture.reset();
   closeModal(popupPictureContainer);
 }
-const userInfo = new UserInfo({ name: profileName, job: profileJob });
+const userInfo = new UserInfo(".profile__name", ".profile__job");
 
-const popupProfile = new PopupWithForm("#popup-profile", () => {
-  profileName.textContent = userInfo.setUserInfo().name;
-  profileJob.textContent = userInfo.setUserInfo().job;
+const popupProfile = new PopupWithForm("#popup-profile", (newFormValues) => {
+  profileName.textContent = userInfo.setUserInfo(newFormValues).name;
+  profileJob.textContent = userInfo.setUserInfo(newFormValues).job;
+  
   popupProfile.close();
 });
 
