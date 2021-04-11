@@ -46,33 +46,14 @@ const cardsList = new Section(
   elementList
 );
 
-/* console.log(cardsList); */
-
 cardsList.renderItems();
 
 function renderLoadedCard(evt) {
   evt.preventDefault();
-  const newCard = new Section(
-    {
-      items: [{ name: formPictureName.value, link: formPictureLink.value }],
-      renderer: (item) => {
-        const cardElement = createCard(item);
-        cardsList.addItem(cardElement);
-      },
-    },
-    elementList
+  cardsList.addItem(
+    createCard({ name: formPictureName.value, link: formPictureLink.value })
   );
-  newCard.renderItems();
 }
-
-/* function renderLoadedCard(evt) {
-  evt.preventDefault();
-  const newCard = [{ name: formPictureName.value, link: formPictureLink.value }];
-  cardList.addItem(newCard);
-  formAddPicture.reset();
-  closeModal(popupPictureContainer);
-
-} */
 
 const userInfo = new UserInfo(".profile__name", ".profile__job");
 
@@ -94,6 +75,10 @@ function openProfile() {
 }
 
 const popupAddPicture = new PopupWithForm("#popup-add-picture", () => {});
+
+/* const popupAddPicture = new PopupWithForm("#popup-add-picture", renderLoadedCard(evt) );  */
+
+
 popupAddPicture.setEventListeners();
 
 function openAddPictureForm() {
