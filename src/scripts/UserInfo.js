@@ -1,6 +1,3 @@
-import { formUserInfo, popupProfileContainer } from "./data.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-
 class UserInfo {
   constructor(nameSelector, jobSelector) {
     this._profileName = document.querySelector(nameSelector);

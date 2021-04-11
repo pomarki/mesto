@@ -45,6 +45,9 @@ const cardsList = new Section(
   },
   elementList
 );
+
+/* console.log(cardsList); */
+
 cardsList.renderItems();
 
 function renderLoadedCard(evt) {
@@ -60,16 +63,23 @@ function renderLoadedCard(evt) {
     elementList
   );
   newCard.renderItems();
+}
 
+/* function renderLoadedCard(evt) {
+  evt.preventDefault();
+  const newCard = [{ name: formPictureName.value, link: formPictureLink.value }];
+  cardList.addItem(newCard);
   formAddPicture.reset();
   closeModal(popupPictureContainer);
-}
+
+} */
+
 const userInfo = new UserInfo(".profile__name", ".profile__job");
 
 const popupProfile = new PopupWithForm("#popup-profile", (newFormValues) => {
-  profileName.textContent = userInfo.setUserInfo(newFormValues).name;
-  profileJob.textContent = userInfo.setUserInfo(newFormValues).job;
-  
+  const newUserInfo = userInfo.setUserInfo(newFormValues);
+  profileName.textContent = newUserInfo.name;
+  profileJob.textContent = newUserInfo.job;
   popupProfile.close();
 });
 
@@ -88,8 +98,7 @@ popupAddPicture.setEventListeners();
 
 function openAddPictureForm() {
   popupAddPicture.open();
-  buttonPictureSave.classList.add("popup__save-button_type_disabled");
-  buttonPictureSave.setAttribute("disabled", "disabled");
+  pictureFormValidator.disableSubmitButton();
 }
 
 formAddPicture.addEventListener("submit", renderLoadedCard);

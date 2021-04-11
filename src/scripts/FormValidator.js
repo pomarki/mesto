@@ -1,4 +1,4 @@
-import{ setValidation } from "./data.js";
+import { setValidation } from "./data.js";
 
 class FormValidator {
   constructor(data, formElement) {
@@ -48,8 +48,7 @@ class FormValidator {
   }
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", "disabled");
+      this.disableSubmitButton();
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.removeAttribute("disabled");
@@ -68,6 +67,10 @@ class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
+  }
+  disableSubmitButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute("disabled", "disabled");
   }
 }
 export { setValidation, FormValidator };

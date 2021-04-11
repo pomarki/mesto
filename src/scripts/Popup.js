@@ -14,13 +14,14 @@ class Popup {
   }
   close() {
     this._popupSelector.classList.remove("popup_opened");
+    document.removeEventListener('click', _escFunction);
   }
   _handleEscClose() {
-    document.addEventListener("keydown", (evt) => {
-      if (evt.key === escKeyValue) {
-        this._popupSelector.classList.remove("popup_opened");
-      }
-    });
+    document.addEventListener("keydown", _escFunction);
+  }
+  _escFunction(evt) {
+    if (evt.key === escKeyValue) {
+      this._popupSelector.classList.remove("popup_opened");
   }
   setEventListeners() {
     this._closeButton.addEventListener("click", () => {
