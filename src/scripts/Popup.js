@@ -6,23 +6,29 @@ class Popup {
     this._closeButton = this._popupSelector.querySelector(
       ".popup__close-button"
     );
+    this.keydownFunction = this.keydownFunction.bind(this._popupSelector);
   }
+
   open() {
     this._popupSelector.classList.add("popup_opened");
     this._handleEscClose();
-    
   }
+
   close() {
     this._popupSelector.classList.remove("popup_opened");
-    document.removeEventListener('click', _escFunction);
+    document.removeEventListener("keydown", this.keydownFunction);
   }
+
   _handleEscClose() {
-    document.addEventListener("keydown", _escFunction);
+    document.addEventListener("keydown", this.keydownFunction);
   }
-  _escFunction(evt) {
+
+  keydownFunction(evt) {
     if (evt.key === escKeyValue) {
-      this._popupSelector.classList.remove("popup_opened");
+      this.classList.remove("popup_opened");
+    }
   }
+
   setEventListeners() {
     this._closeButton.addEventListener("click", () => {
       this._popupSelector.classList.remove("popup_opened");
