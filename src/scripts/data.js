@@ -4,13 +4,10 @@ const escKeyValue = "Escape";
 const elementList = document.querySelector(".elements__list");
 const profileName = profileContainer.querySelector(".profile__name");
 const profileJob = profileContainer.querySelector(".profile__job");
-const popupProfileContainer = document.querySelector("#popup-profile");
-const popupFullPictureContainer = document.querySelector("#popup-full-picture");
 const formUserInfo = document.querySelector("form[name=user-info]");
 const formUserName = formUserInfo.querySelector("input[name=user-name]");
 const formUserJob = formUserInfo.querySelector("input[name=user-job]");
 const buttonProfileSave = formUserInfo.querySelector(".popup__save-button");
-const popupPictureContainer = document.querySelector("#popup-add-picture");
 const formAddPicture = document.querySelector("form[name=add-picture]");
 const formPictureName = formAddPicture.querySelector(
   "input[name=picture-name]"
@@ -19,7 +16,7 @@ const formPictureLink = formAddPicture.querySelector(
   "input[name=picture-link]"
 );
 const buttonPictureAdd = profileContainer.querySelector(".profile__add-button");
-const buttonPictureSave = formAddPicture.querySelector(".popup__save-button");
+
 const initialCards = [
   {
     name: "Архыз",
@@ -68,19 +65,15 @@ export {
   escKeyValue,
   profileName,
   profileJob,
-  popupProfileContainer,
   formUserInfo,
   formUserName,
   formUserJob,
   buttonProfileSave,
-  popupPictureContainer,
   formAddPicture,
   formPictureName,
   formPictureLink,
   buttonPictureAdd,
-  buttonPictureSave,
   initialCards,
   elementList,
-  popupFullPictureContainer,
   setValidation,
 };

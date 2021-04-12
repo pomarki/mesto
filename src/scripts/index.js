@@ -2,23 +2,19 @@ import {
   buttonProfileEdit,
   profileName,
   profileJob,
-  popupProfileContainer,
   formUserInfo,
   formUserName,
   formUserJob,
   buttonProfileSave,
-  popupPictureContainer,
   formAddPicture,
   formPictureName,
   formPictureLink,
   buttonPictureAdd,
-  buttonPictureSave,
   initialCards,
   elementList,
-  popupFullPictureContainer,
 } from "./data.js";
 import { Card } from "./card.js";
-import { closeModal } from "./utils.js";
+
 import { setValidation, FormValidator } from "./FormValidator.js";
 import { UserInfo } from "./UserInfo.js";
 import { Section } from "./Section.js";
@@ -49,7 +45,6 @@ const cardsList = new Section(
 cardsList.renderItems();
 
 function renderLoadedCard(evt) {
-  evt.preventDefault();
   cardsList.addItem(
     createCard({ name: formPictureName.value, link: formPictureLink.value })
   );
@@ -74,10 +69,10 @@ function openProfile() {
   buttonProfileSave.classList.remove("popup__save-button_type_disabled");
 }
 
-const popupAddPicture = new PopupWithForm("#popup-add-picture", () => {});
-
-/* const popupAddPicture = new PopupWithForm("#popup-add-picture", renderLoadedCard(evt) );  */
-
+const popupAddPicture = new PopupWithForm(
+  "#popup-add-picture",
+  renderLoadedCard
+);
 
 popupAddPicture.setEventListeners();
 
@@ -86,7 +81,6 @@ function openAddPictureForm() {
   pictureFormValidator.disableSubmitButton();
 }
 
-formAddPicture.addEventListener("submit", renderLoadedCard);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
 

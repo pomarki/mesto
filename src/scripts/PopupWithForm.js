@@ -20,6 +20,7 @@ class PopupWithForm extends Popup {
       const newFormValues = this._getInputValues();
       this.callbackSubmitForm(newFormValues);
       this._popupSelector.classList.remove("popup_opened");
+      this._popupForm.reset();
     });
   }
   close() {
