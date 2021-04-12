@@ -12,14 +12,14 @@ import {
   buttonPictureAdd,
   initialCards,
   elementList,
-} from "./data.js";
-import { Card } from "./card.js";
+} from "../scripts/data.js";
+import { Card } from "../scripts/card.js";
 
-import { setValidation, FormValidator } from "./FormValidator.js";
-import { UserInfo } from "./UserInfo.js";
-import { Section } from "./Section.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
+import { setValidation, FormValidator } from "../scripts/FormValidator.js";
+import { UserInfo } from "../scripts/UserInfo.js";
+import { Section } from "../scripts/Section.js";
+import { PopupWithImage } from "../scripts/PopupWithImage.js";
+import { PopupWithForm } from "../scripts/PopupWithForm.js";
 
 const popupFullPicture = new PopupWithImage("#popup-full-picture");
 popupFullPicture.setEventListeners();

@@ -1,3 +1,3 @@
 import '../src/pages/index.css';
-import '../src/scripts/index.js';
+import '../src/pages/index.js';
 
