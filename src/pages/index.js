@@ -44,7 +44,7 @@ const cardsList = new Section(
 
 cardsList.renderItems();
 
-function renderLoadedCard(evt) {
+function renderLoadedCard() {
   cardsList.addItem(
     createCard({ name: formPictureName.value, link: formPictureLink.value })
   );
@@ -53,9 +53,7 @@ function renderLoadedCard(evt) {
 const userInfo = new UserInfo(".profile__name", ".profile__job");
 
 const popupProfile = new PopupWithForm("#popup-profile", (newFormValues) => {
-  const newUserInfo = userInfo.setUserInfo(newFormValues);
-  profileName.textContent = newUserInfo.name;
-  profileJob.textContent = newUserInfo.job;
+  userInfo.setUserInfo(newFormValues);
   popupProfile.close();
 });
 
@@ -66,7 +64,7 @@ function openProfile() {
   popupProfile.open();
   formUserName.value = userData.name;
   formUserJob.value = userData.job;
-  buttonProfileSave.classList.remove("popup__save-button_type_disabled");
+  profileFormValidator.enableSubmitButton()
 }
 
 const popupAddPicture = new PopupWithForm(

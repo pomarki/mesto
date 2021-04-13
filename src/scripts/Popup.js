@@ -2,40 +2,36 @@ import { escKeyValue } from "./data.js";
 
 class Popup {
   constructor(popupContainer) {
-    this._popupSelector = document.querySelector(popupContainer);
-    this._closeButton = this._popupSelector.querySelector(
+    this._popupContainer = document.querySelector(popupContainer);
+    this._closeButton = this._popupContainer.querySelector(
       ".popup__close-button"
     );
-    this.keydownFunction = this.keydownFunction.bind(this._popupSelector);
+
+    this.keydownFunction = this.keydownFunction.bind(this);
   }
 
   open() {
-    this._popupSelector.classList.add("popup_opened");
-    this._handleEscClose();
+    this._popupContainer.classList.add("popup_opened");
+    document.addEventListener("keydown", this.keydownFunction);
   }
 
   close() {
-    this._popupSelector.classList.remove("popup_opened");
+    this._popupContainer.classList.remove("popup_opened");
     document.removeEventListener("keydown", this.keydownFunction);
-  }
-
-  _handleEscClose() {
-    document.addEventListener("keydown", this.keydownFunction);
   }
 
   keydownFunction(evt) {
     if (evt.key === escKeyValue) {
-      this.classList.remove("popup_opened");
+      this.close();
     }
   }
 
   setEventListeners() {
-    this._closeButton.addEventListener("click", () => {
-      this._popupSelector.classList.remove("popup_opened");
-    });
-    this._popupSelector.addEventListener("click", (evt) => {
+    this._closeButton.addEventListener("click", () => this.close());
+
+    this._popupContainer.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("popup_opened")) {
-        this._popupSelector.classList.remove("popup_opened");
+        this.close();
       }
     });
   }
