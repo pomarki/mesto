@@ -1,11 +1,8 @@
 import {
   buttonProfileEdit,
-  profileName,
-  profileJob,
   formUserInfo,
   formUserName,
   formUserJob,
-  buttonProfileSave,
   formAddPicture,
   formPictureName,
   formPictureLink,
@@ -14,7 +11,6 @@ import {
   elementList,
 } from "../scripts/data.js";
 import { Card } from "../scripts/card.js";
-
 import { setValidation, FormValidator } from "../scripts/FormValidator.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 import { Section } from "../scripts/Section.js";

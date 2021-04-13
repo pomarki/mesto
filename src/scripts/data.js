@@ -2,12 +2,9 @@ const buttonProfileEdit = document.querySelector(".profile__edit-button");
 const profileContainer = document.querySelector(".profile");
 const escKeyValue = "Escape";
 const elementList = document.querySelector(".elements__list");
-const profileName = profileContainer.querySelector(".profile__name");
-const profileJob = profileContainer.querySelector(".profile__job");
 const formUserInfo = document.querySelector("form[name=user-info]");
 const formUserName = formUserInfo.querySelector("input[name=user-name]");
 const formUserJob = formUserInfo.querySelector("input[name=user-job]");
-const buttonProfileSave = formUserInfo.querySelector(".popup__save-button");
 const formAddPicture = document.querySelector("form[name=add-picture]");
 const formPictureName = formAddPicture.querySelector(
   "input[name=picture-name]"
@@ -63,12 +60,9 @@ export {
   buttonProfileEdit,
   profileContainer,
   escKeyValue,
-  profileName,
-  profileJob,
   formUserInfo,
   formUserName,
   formUserJob,
-  buttonProfileSave,
   formAddPicture,
   formPictureName,
   formPictureLink,
