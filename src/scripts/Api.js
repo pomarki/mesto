@@ -1,0 +1,51 @@
+class Api {
+  constructor({ address, token, groupID }) {
+    this._address = address;
+    this._token = token;
+    this._groupID = groupID;
+  }
+
+  getCards() {
+    return fetch(`${this._address}/${this._groupID}/cards`, {
+      headers: {
+        authorization: this._token,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(`Ошибка ${response.status}`);
+    });
+  }
+
+  /* addCard(data) {
+        return fetch(this._address, {
+            method: 'POST',
+            headers: {
+                authorization: this._token,
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: data.user,
+                message: data.message
+            })
+        })
+            .then(response => response.ok
+                ? response.json()
+                : Promise.reject(`Ошибка ${response.status}`))
+    } */
+
+  /* removeCard(id) {
+        return fetch(`${this._address}/messages/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token
+            }
+        })
+            .then(response => response.ok
+                ? Promise.resolve('success')
+                : Promise.reject(`Ошибка ${response.status}`))
+    } */
+}
+
+export default Api;

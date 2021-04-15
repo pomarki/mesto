@@ -138,6 +138,51 @@
         <figcaption class="popup__picture-subtitle"></figcaption>
       </figure>
     </section>
+    <section class="popup page__popup" id="popup-confirm">
+      <div class="popup__container">
+        <button
+          type="button"
+          class="popup__close-button link"
+          aria-label="Закрыть окно"
+        ></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="button" class="popup__save-button">Да</button>
+      </div>
+    </section>
+    <section class="popup page__popup" id="popup-avatar-form">
+      <div class="popup__container">
+        <button
+          type="button"
+          class="popup__close-button link"
+          aria-label="Закрыть окно"
+        ></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          name="upg-avatar"
+          class="popup__form"
+          autocomplete="off"
+          novalidate
+        >
+          <div class="popup__section">
+            <input
+              required
+              class="popup__text-field"
+              type="url"
+              placeholder="Ссылка на картинку"
+              name="avatar-link"
+              id="avatar-link"
+            />
+            <span class="popup__input-error" id="avatar-link-error"></span>
+          </div>
+          <button
+            type="submit"
+            class="popup__save-button popup__save-button_type_disabled"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </section>
     <template id="template__element">
       <li class="elements__item">
         <div class="element">

@@ -16,6 +16,13 @@ import { UserInfo } from "../scripts/UserInfo.js";
 import { Section } from "../scripts/Section.js";
 import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
+import Api from "../scripts/Api.js";
+
+const api = new Api({
+  address: "https://mesto.nomoreparties.co/v1",
+  token: "a871f903-a7ec-46a6-99c3-83953182d0a9",
+  groupID: "cohort-22",
+});
 
 const popupFullPicture = new PopupWithImage("#popup-full-picture");
 popupFullPicture.setEventListeners();
@@ -27,7 +34,7 @@ function createCard(item) {
   return card.generateCard();
 }
 
-const cardsList = new Section(
+/* const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
@@ -36,9 +43,21 @@ const cardsList = new Section(
     },
   },
   elementList
+); */
+
+const cardsList = new Section(
+  {
+      renderer: (item) => {
+      const cardElement = createCard(item);
+      cardsList.addItem(cardElement);
+    },
+  },
+  elementList
 );
 
-cardsList.renderItems();
+
+
+/* cardsList.renderItems(); */
 
 function renderLoadedCard() {
   cardsList.addItem(
@@ -60,7 +79,7 @@ function openProfile() {
   popupProfile.open();
   formUserName.value = userData.name;
   formUserJob.value = userData.job;
-  profileFormValidator.enableSubmitButton()
+  profileFormValidator.enableSubmitButton();
 }
 
 const popupAddPicture = new PopupWithForm(
@@ -83,3 +102,8 @@ profileFormValidator.enableValidation();
 
 const pictureFormValidator = new FormValidator(setValidation, formAddPicture);
 pictureFormValidator.enableValidation();
+
+api.getCards()
+.then((cards) => {
+  cardsList.renderItems(cards);
+});
