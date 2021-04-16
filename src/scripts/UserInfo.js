@@ -14,17 +14,14 @@ class UserInfo {
       about: this._userJob,
       avatar: this._userAvatar,
     };
+    
     return actualUserInfo;
   }
   setUserInfo(object) {
     this._profileName.textContent = object["name"];
     this._profileJob.textContent = object["about"];
-    this._profileAvatar.src = object["avatar"];
-    const newUserInfo = {
-      name: this._profileName.textContent,
-      job: this._profileJob.textContent,
-      avatar: this._profileAvatar,
-    };
+    /* this._profileAvatar.src = object["avatar"]; */
+    
   }
 }
 

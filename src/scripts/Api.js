@@ -29,8 +29,25 @@ class Api {
       return Promise.reject(`Ошибка ${response.status}`);
     });
   }
-
-  /* addCard(data) {
+  changeUserInfo(data) {
+    return fetch(`${this._address}/${this._groupID}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      })
+    }).then((response) =>
+      response.ok
+        ? response.json()
+        : Promise.reject(`Ошибка!!! ${response.status}`)
+    );
+  }
+  /* 
+  addCard(data) {
         return fetch(this._address, {
             method: 'POST',
             headers: {
