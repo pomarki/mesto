@@ -29,7 +29,8 @@ popupFullPicture.setEventListeners();
 
 function createCard(item) {
   const card = new Card(item, "#template__element", () => {
-    popupFullPicture.open(item.link, item.name);
+    popupFullPicture.open(item.link, item.name, item.likes.length);
+    
   });
   return card.generateCard();
 }

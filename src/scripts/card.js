@@ -4,8 +4,10 @@ class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes.length; // length arrov likes
     this._cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
+
   }
   _getTemplate() {
     const cardElement = document
@@ -46,12 +48,14 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
     const _elementImg = this._element.querySelector(".element__img");
+    const _elementLikes = this._element.querySelector(".element__info-likes");
     _elementImg.src = this._link;
     this._element.querySelector(
       ".element__info-place"
     ).textContent = this._name;
     _elementImg.alt = this._name;
     this._setEventListeners();
+    _elementLikes.textContent = this._likes;
     return this._element;
   }
 }

@@ -23,6 +23,8 @@
 @import url(../blocks/element/__info-heart/element__info-heart.css);
 @import url(../blocks/element/__info-heart/_type/element__info-heart_type_disabled.css);
 @import url(../blocks/element/__info-place/element__info-place.css);
+@import url(../blocks/element/__info-likes/element__info-likes.css);
+@import url(../blocks/element/__likes-container/element__likes-container.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__list/elements__list.css);
 @import url(../blocks/elements/__item/elements__item.css);
