@@ -58,22 +58,25 @@ const cardsList = new Section(
 /* cardsList.renderItems(); */
 
 function renderLoadedCard() {
+const dataCard = { name: formPictureName.value, link: formPictureLink.value }
+console.log(dataCard)
+api.sendNewCard(dataCard)
+.then((result) => {
   cardsList.addItem(
-    createCard({ name: formPictureName.value, link: formPictureLink.value })
+    createCard(dataCard)
   );
+}).catch((err) => console.log(err));
+
+ 
 }
-
-
 
 let userInfo = null;
 
-const popupProfile = new PopupWithForm("#popup-profile", (newFormValues) => {
-  const nfv = {name: newFormValues["user-name"], about: newFormValues["user-job"]}
-
-  api.changeUserInfo(nfv).then((result) => {
-    userInfo.setUserInfo(nfv);
-    
-  });
+const popupProfile = new PopupWithForm("#popup-profile", (data) => {
+  const newFormValues = { name: data["user-name"], about: data["user-job"] };
+  api.changeUserInfo(newFormValues).then((result) => {
+    userInfo.setUserInfo(newFormValues);
+  }).catch((err) => console.log(err));
 
   popupProfile.close();
 });
