@@ -65,7 +65,12 @@ function renderLoadedCard() {
   );
 }
 
-const userInfo = new UserInfo(".profile__name", ".profile__job");
+/* const userInfo = new UserInfo(".profile__name", ".profile__job"); */
+
+/* const userInfo = new UserInfo(".profile__name", ".profile__job"); */
+
+let userInfo = null;
+
 
 const popupProfile = new PopupWithForm("#popup-profile", (newFormValues) => {
   userInfo.setUserInfo(newFormValues);
@@ -103,7 +108,18 @@ profileFormValidator.enableValidation();
 const pictureFormValidator = new FormValidator(setValidation, formAddPicture);
 pictureFormValidator.enableValidation();
 
-api.getCards()
+api.getInitialCards()
 .then((cards) => {
   cardsList.renderItems(cards);
-});
+})
+.catch(err => console.log(err));
+
+api.getUserInfo()
+.then((user) => {
+  
+let userInfo = new UserInfo({name: user.name, about: user.about, avatar: user.avatar})
+userInfo.getUserInfo();
+userInfo.setUserInfo({name: user.name, about: user.about, avatar: user.avatar});
+ 
+})
+.catch(err => console.log(err))
