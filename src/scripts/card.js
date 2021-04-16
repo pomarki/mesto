@@ -6,6 +6,7 @@ class Card {
     this._link = data.link;
     this._likes = data.likes.length; // length arrov likes
     this._userId = data.owner._id; // id запостившего карточку
+    this._cardId = data._id;
     this._cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
     this.handleTrashClick = handleTrashClick;
@@ -24,7 +25,7 @@ class Card {
       .querySelector(".element__trash")
       .addEventListener("click", () => {
         /* this._trashIconClick(); */
-        this.handleTrashClick();
+        this.handleTrashClick(this._cardId);
       });
     this._element
       .querySelector(".element__info-heart")
@@ -42,7 +43,7 @@ class Card {
       .querySelector(".element__info-heart")
       .classList.toggle("element__info-heart_type_disabled");
   }
-  _trashIconClick() {
+  trashIconClick() {
     this._element.remove();
     this._element = null;
   }
@@ -53,11 +54,10 @@ class Card {
     const _elementImg = this._element.querySelector(".element__img");
     const _elementLikes = this._element.querySelector(".element__info-likes");
 
-    if ((this._userId == "e6c92694e7b7e6c22ce22a70")) {
+    if (this._userId == "e6c92694e7b7e6c22ce22a70") {
       this._trashButton.classList.add("element__trash_visible");
-    } 
+    }
 
-    /* console.log(this._userId = 'e6c92694e7b7e6c22ce22a70'); */
     _elementImg.src = this._link;
     this._element.querySelector(
       ".element__info-place"

@@ -64,8 +64,8 @@ class Api {
   );
   }
 
-  /* removeCard(id) {
-        return fetch(`${this._address}/messages/${id}`, {
+  removeCard(id) {
+        return fetch(`${this._address}/${this._groupID}/cards/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token
@@ -74,7 +74,7 @@ class Api {
             .then(response => response.ok
                 ? Promise.resolve('success')
                 : Promise.reject(`Ошибка ${response.status}`))
-    } */
+    }
 }
 
 export default Api;

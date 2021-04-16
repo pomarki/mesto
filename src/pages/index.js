@@ -32,7 +32,11 @@ function createCard(item) {
   const card = new Card(item,
     "#template__element",
     () => {popupFullPicture.open(item.link, item.name);},
-    () => {popupConfirm.open()}
+    (id) => {popupConfirm.open() 
+    api.removeCard(id)
+    .then(() => {card.trashIconClick()})
+    .catch((err) => console.log(err))
+    } // функция по "ДА" в попапе
     );
   return card.generateCard();
 }
