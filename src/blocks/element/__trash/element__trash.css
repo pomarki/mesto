@@ -8,6 +8,7 @@
   border: 0;
   outline-style: none;
   z-index: 1;
+  visibility: hidden;
 }
 .element__trash:hover {
   opacity: 0.5;

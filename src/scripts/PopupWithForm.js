@@ -20,7 +20,6 @@ class PopupWithForm extends Popup {
     this._popupForm.addEventListener("submit", () => {
       const newFormValues = this._getInputValues();
       this.callbackSubmitForm(newFormValues);
-      console.log(newFormValues)
       super.close();
       this._popupForm.reset();
     });

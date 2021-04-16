@@ -1,13 +1,14 @@
 export { Card };
 
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handleCardClick, handleTrashClick) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes.length; // length arrov likes
+    this._userId = data.owner._id; // id запостившего карточку
     this._cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
-
+    this.handleTrashClick = handleTrashClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -22,7 +23,8 @@ class Card {
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        this._trashIconClick();
+        /* this._trashIconClick(); */
+        this.handleTrashClick();
       });
     this._element
       .querySelector(".element__info-heart")
@@ -47,8 +49,15 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._trashButton = this._element.querySelector(".element__trash");
     const _elementImg = this._element.querySelector(".element__img");
     const _elementLikes = this._element.querySelector(".element__info-likes");
+
+    if ((this._userId == "e6c92694e7b7e6c22ce22a70")) {
+      this._trashButton.classList.add("element__trash_visible");
+    } 
+
+    /* console.log(this._userId = 'e6c92694e7b7e6c22ce22a70'); */
     _elementImg.src = this._link;
     this._element.querySelector(
       ".element__info-place"

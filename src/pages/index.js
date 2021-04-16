@@ -17,6 +17,7 @@ import { Section } from "../scripts/Section.js";
 import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import Api from "../scripts/Api.js";
+import { Popup } from "../scripts/Popup.js";
 
 const api = new Api({
   address: "https://mesto.nomoreparties.co/v1",
@@ -28,23 +29,16 @@ const popupFullPicture = new PopupWithImage("#popup-full-picture");
 popupFullPicture.setEventListeners();
 
 function createCard(item) {
-  const card = new Card(item, "#template__element", () => {
-    popupFullPicture.open(item.link, item.name, item.likes.length);
-    
-  });
+  const card = new Card(item,
+    "#template__element",
+    () => {popupFullPicture.open(item.link, item.name);},
+    () => {popupConfirm.open()}
+    );
   return card.generateCard();
 }
 
-/* const cardsList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      cardsList.addItem(cardElement);
-    },
-  },
-  elementList
-); */
+const popupConfirm = new Popup("#popup-confirm");
+popupConfirm.setEventListeners()
 
 const cardsList = new Section(
   {
@@ -137,3 +131,5 @@ api
     });
   })
   .catch((err) => console.log(err));
+
+
