@@ -7,8 +7,8 @@ import {
   formPictureName,
   formPictureLink,
   buttonPictureAdd,
-  initialCards,
   elementList,
+  buttonPopupConfirm,
 } from "../scripts/data.js";
 import { Card } from "../scripts/card.js";
 import { setValidation, FormValidator } from "../scripts/FormValidator.js";
@@ -29,20 +29,30 @@ const popupFullPicture = new PopupWithImage("#popup-full-picture");
 popupFullPicture.setEventListeners();
 
 function createCard(item) {
-  const card = new Card(item,
+  const card = new Card(
+    item,
     "#template__element",
-    () => {popupFullPicture.open(item.link, item.name);},
-    (id) => {popupConfirm.open() 
-    api.removeCard(id)
-    .then(() => {card.trashIconClick()})
-    .catch((err) => console.log(err))
-    } // функция по "ДА" в попапе
-    );
+    () => {
+      popupFullPicture.open(item.link, item.name);
+    },
+    () => {
+      popupConfirm.open();
+      buttonPopupConfirm.addEventListener("click", () => {
+        api
+          .removeCard(card.getCardId())
+          .then(() => {
+            card.trashIconClick();
+          })
+          .catch((err) => console.log(err));
+        popupConfirm.close();
+      });
+    }
+  );
   return card.generateCard();
 }
 
 const popupConfirm = new Popup("#popup-confirm");
-popupConfirm.setEventListeners()
+popupConfirm.setEventListeners();
 
 const cardsList = new Section(
   {
@@ -57,25 +67,26 @@ const cardsList = new Section(
 /* cardsList.renderItems(); */
 
 function renderLoadedCard() {
-const dataCard = { name: formPictureName.value, link: formPictureLink.value }
-console.log(dataCard)
-api.sendNewCard(dataCard)
-.then((result) => {
-  cardsList.addItem(
-    createCard(dataCard)
-  );
-}).catch((err) => console.log(err));
+  const dataCard = { name: formPictureName.value, link: formPictureLink.value };
 
- 
+  api
+    .sendNewCard(dataCard)
+    .then(() => {
+      cardsList.addItem(createCard(dataCard));
+    })
+    .catch((err) => console.log(err));
 }
 
 let userInfo = null;
 
 const popupProfile = new PopupWithForm("#popup-profile", (data) => {
   const newFormValues = { name: data["user-name"], about: data["user-job"] };
-  api.changeUserInfo(newFormValues).then((result) => {
-    userInfo.setUserInfo(newFormValues);
-  }).catch((err) => console.log(err));
+  api
+    .changeUserInfo(newFormValues)
+    .then(() => {
+      userInfo.setUserInfo(newFormValues);
+    })
+    .catch((err) => console.log(err));
 
   popupProfile.close();
 });
@@ -135,5 +146,3 @@ api
     });
   })
   .catch((err) => console.log(err));
-
-

@@ -75,6 +75,16 @@ class Api {
                 ? Promise.resolve('success')
                 : Promise.reject(`Ошибка ${response.status}`))
     }
+    
+/*     likeCard(id) {
+      return fetch(`${this._address}/${this._groupID}/cards/likes/${id}`, {
+        method: "PUT",
+        headers: {
+          authorization: this._token
+      }
+
+      }
+    } */
 }
 
 export default Api;

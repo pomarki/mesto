@@ -28,7 +28,7 @@ class Popup {
 
   setEventListeners() {
     this._closeButton.addEventListener("click", () => this.close());
-    this._confirmButton.addEventListener("click", () => this.close());
+    /* this._confirmButton.addEventListener("click", () => this.close()); */
     this._popupContainer.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("popup_opened")) {
         this.close();

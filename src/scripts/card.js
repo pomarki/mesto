@@ -11,6 +11,11 @@ class Card {
     this.handleCardClick = handleCardClick;
     this.handleTrashClick = handleTrashClick;
   }
+
+  getCardId() {
+    return this._cardId;
+  }
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -25,7 +30,7 @@ class Card {
       .querySelector(".element__trash")
       .addEventListener("click", () => {
         /* this._trashIconClick(); */
-        this.handleTrashClick(this._cardId);
+        this.handleTrashClick();
       });
     this._element
       .querySelector(".element__info-heart")
