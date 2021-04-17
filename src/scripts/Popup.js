@@ -6,7 +6,7 @@ class Popup {
     this._closeButton = this._popupContainer.querySelector(
       ".popup__close-button"
     );
-    this._confirmButton = document.querySelector("#popup-confirm-button");
+    /* this._confirmButton = document.querySelector("#popup-confirm-button"); */
     this.keydownFunction = this.keydownFunction.bind(this);
   }
 

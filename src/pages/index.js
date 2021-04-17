@@ -33,9 +33,10 @@ function createCard(item) {
     item,
     "#template__element",
     () => {
-      popupFullPicture.open(item.link, item.name);
+      popupFullPicture.open(item.link, item.name); // handleCardClick
     },
     () => {
+      // handleTrashClick
       popupConfirm.open();
       buttonPopupConfirm.addEventListener("click", () => {
         api
@@ -46,6 +47,17 @@ function createCard(item) {
           .catch((err) => console.log(err));
         popupConfirm.close();
       });
+    },
+    () => {
+      // handleLikeClick
+      api
+        .likeCard(card.getCardId())
+        .then(() => {
+          card.heartIconClick();
+          console.log(card.likes);
+          
+        })
+        .catch((err) => console.log(err));
     }
   );
   return card.generateCard();
@@ -63,8 +75,6 @@ const cardsList = new Section(
   },
   elementList
 );
-
-/* cardsList.renderItems(); */
 
 function renderLoadedCard() {
   const dataCard = { name: formPictureName.value, link: formPictureLink.value };

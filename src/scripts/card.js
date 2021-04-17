@@ -1,19 +1,23 @@
 export { Card };
 
 class Card {
-  constructor(data, cardSelector, handleCardClick, handleTrashClick) {
+  constructor(data, cardSelector, handleCardClick, handleTrashClick, handleLikeClick) {
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes.length; // length arrov likes
+    this.likes = data.likes; // length arrov likes
     this._userId = data.owner._id; // id запостившего карточку
     this._cardId = data._id;
     this._cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
     this.handleTrashClick = handleTrashClick;
+    this.handleLikeClick = handleLikeClick;
   }
 
   getCardId() {
     return this._cardId;
+  }
+  getLikes() {
+    return this.likes.length;
   }
 
   _getTemplate() {
@@ -35,7 +39,8 @@ class Card {
     this._element
       .querySelector(".element__info-heart")
       .addEventListener("click", () => {
-        this._heartIconClick();
+        /* this.heartIconClick(); */
+        this.handleLikeClick();
       });
     this._element
       .querySelector(".element__img")
@@ -43,7 +48,7 @@ class Card {
         this.handleCardClick();
       });
   }
-  _heartIconClick() {
+  heartIconClick() {
     this._element
       .querySelector(".element__info-heart")
       .classList.toggle("element__info-heart_type_disabled");
@@ -63,13 +68,20 @@ class Card {
       this._trashButton.classList.add("element__trash_visible");
     }
 
+if (this.likes.find(item => item._id == "e6c92694e7b7e6c22ce22a70")) {
+  this._element
+      .querySelector(".element__info-heart")
+      .classList.remove("element__info-heart_type_disabled")
+}
+
+
     _elementImg.src = this._link;
     this._element.querySelector(
       ".element__info-place"
     ).textContent = this._name;
     _elementImg.alt = this._name;
     this._setEventListeners();
-    _elementLikes.textContent = this._likes;
+    _elementLikes.textContent = this.likes.length;
     return this._element;
   }
 }
