@@ -54,8 +54,9 @@ function createCard(item) {
         api
           .dislikeCard(card.getCardId())
           .then((result) => {
-            card.heartIconClick();
-            console.log(result.likes.length);
+            let likesVol = result.likes.length;
+            card.heartIconClick(likesVol--);
+
             // добавить -1 к счётчику лайков
           })
           .catch((err) => console.log(err));
@@ -63,8 +64,9 @@ function createCard(item) {
         api
           .likeCard(card.getCardId())
           .then((result) => {
-            card.heartIconClick();
-            console.log(result.likes.length);
+            let likesVol = result.likes.length;
+            card.heartIconClick(likesVol++);
+
             // добавить +1 к счётчику лайков
           })
           .catch((err) => console.log(err));
@@ -87,8 +89,6 @@ const cardsList = new Section(
   },
   elementList
 );
-
-let myNewCard = {};
 
 function renderLoadedCard() {
   const dataCard = { name: formPictureName.value, link: formPictureLink.value };

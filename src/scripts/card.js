@@ -72,11 +72,13 @@ class Card {
         this.handleCardClick();
       });
   }
-  heartIconClick() {
+  heartIconClick(vol) {
     this._element
       .querySelector(".element__info-heart")
       .classList.toggle("element__info-heart_type_disabled");
     const _elementLikes = this._element.querySelector(".element__info-likes");
+    _elementLikes.textContent = vol;
+
   }
   trashIconClick() {
     this._element.remove();
