@@ -20,7 +20,7 @@ class UserInfo {
   setUserInfo(object) {
     this._profileName.textContent = object["name"];
     this._profileJob.textContent = object["about"];
-    /* this._profileAvatar.src = object["avatar"]; */
+    this._profileAvatar.src = object["avatar"];
     
   }
 }

@@ -140,16 +140,25 @@ function openAddPictureForm() {
   pictureFormValidator.disableSubmitButton();
 }
 
-const changeAvatarForm = new PopupWithForm(
-"#popup-avatar-form", (avatar) => {
-console.log(avatar["avatar-link"]);
-api.sendNewAvatar(avatar["avatar-link"])
-.then(() => {
-  console.log("OK")
-})
-.catch((err) => console.log("НЕ ОК"));
-}
-)
+const changeAvatarForm = new PopupWithForm("#popup-avatar-form", (avatar) => {
+  
+  document.querySelector("#avatar-buttom").textContent = "Coхранение";
+
+  api
+    .sendNewAvatar(avatar["avatar-link"])
+    .then(() => {
+      
+    })
+    .catch((err) => console.log(err));
+
+    api
+    .getUserInfo()
+    .then((user) => {
+      
+    })
+    .catch((err) => console.log(err));
+
+});
 
 function openAvatarForm() {
   changeAvatarForm.open();
@@ -158,7 +167,7 @@ function openAvatarForm() {
 
 changeAvatarForm.setEventListeners();
 
-buttonChangeAvatar.addEventListener("click", openAvatarForm)
+buttonChangeAvatar.addEventListener("click", openAvatarForm);
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
 
