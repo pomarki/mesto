@@ -1,7 +1,13 @@
 export { Card };
 
 class Card {
-  constructor(data, cardSelector, handleCardClick, handleTrashClick, handleLikeClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleCardClick,
+    handleTrashClick,
+    handleLikeClick
+  ) {
     this._name = data.name;
     this._link = data.link;
     this.likes = data.likes; // length arrov likes
@@ -18,6 +24,13 @@ class Card {
   }
   getLikes() {
     return this.likes.length;
+  }
+  checkLike() {
+    if (this.likes.find((item) => item._id == "e6c92694e7b7e6c22ce22a70")) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   _getTemplate() {
@@ -68,12 +81,11 @@ class Card {
       this._trashButton.classList.add("element__trash_visible");
     }
 
-if (this.likes.find(item => item._id == "e6c92694e7b7e6c22ce22a70")) {
-  this._element
-      .querySelector(".element__info-heart")
-      .classList.remove("element__info-heart_type_disabled")
-}
-
+    if (this.likes.find((item) => item._id == "e6c92694e7b7e6c22ce22a70")) {
+      this._element
+        .querySelector(".element__info-heart")
+        .classList.remove("element__info-heart_type_disabled");
+    }
 
     _elementImg.src = this._link;
     this._element.querySelector(

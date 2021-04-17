@@ -50,16 +50,28 @@ function createCard(item) {
     },
     () => {
       // handleLikeClick
-      api
-        .likeCard(card.getCardId())
-        .then(() => {
-          card.heartIconClick();
-          console.log(card.likes);
-          
-        })
-        .catch((err) => console.log(err));
+      if (card.checkLike()) {
+        api
+          .dislikeCard(card.getCardId())
+          .then(() => {
+            card.heartIconClick();
+// добавить -1 к счётчику лайков
+
+          })
+          .catch((err) => console.log(err));
+      } else {
+        api
+          .likeCard(card.getCardId())
+          .then(() => {
+            card.heartIconClick();
+
+            // добавить +1 к счётчику лайков
+          })
+          .catch((err) => console.log(err));
+      }
     }
   );
+
   return card.generateCard();
 }
 

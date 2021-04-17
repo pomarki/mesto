@@ -81,7 +81,7 @@ class Api {
   }
 
   likeCard(id) {
-    return fetch(`${this._address}/${this._groupID}/cards//likes/${id}`, {
+    return fetch(`${this._address}/${this._groupID}/cards/likes/${id}`, {
       method: "PUT",
       headers: {
         authorization: this._token,
@@ -92,6 +92,20 @@ class Api {
         : Promise.reject(`Ошибка ${response.status}`)
     );
   }
+
+  dislikeCard(id) {
+    return fetch(`${this._address}/${this._groupID}/cards/likes/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token,
+      },
+    }).then((response) =>
+      response.ok
+        ? Promise.resolve("success")
+        : Promise.reject(`Ошибка ${response.status}`)
+    );
+  }
+  
 
 }
 
