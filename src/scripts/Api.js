@@ -105,7 +105,23 @@ class Api {
         : Promise.reject(`Ошибка ${response.status}`)
     );
   }
-  
+  sendNewAvatar(avatar) {
+    return fetch(`${this._address}/${this._groupID}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar
+        
+      }),
+    }).then((response) =>
+      response.ok
+        ? Promise.resolve("success")
+        : Promise.reject(`Ошибка ${response.status}`)
+    );
+  }
 
 }
 

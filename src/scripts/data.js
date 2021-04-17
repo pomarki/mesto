@@ -6,6 +6,7 @@ const formUserInfo = document.querySelector("form[name=user-info]");
 const formUserName = formUserInfo.querySelector("input[name=user-name]");
 const formUserJob = formUserInfo.querySelector("input[name=user-job]");
 const formAddPicture = document.querySelector("form[name=add-picture]");
+const formChangeAvatar = document.querySelector("form[name=upg-avatar]");
 const formPictureName = formAddPicture.querySelector(
   "input[name=picture-name]"
 );
@@ -14,6 +15,7 @@ const formPictureLink = formAddPicture.querySelector(
 );
 const buttonPictureAdd = profileContainer.querySelector(".profile__add-button");
 const buttonPopupConfirm = document.querySelector("#popup-confirm-button");
+const buttonChangeAvatar = document.querySelector(".profile__avatar-change-icon");
 
 const setValidation = {
   formSelector: ".popup__form",
@@ -38,4 +40,6 @@ export {
   elementList,
   buttonPopupConfirm,
   setValidation,
+  buttonChangeAvatar,
+  formChangeAvatar,
 };

@@ -9,6 +9,8 @@ import {
   buttonPictureAdd,
   elementList,
   buttonPopupConfirm,
+  buttonChangeAvatar,
+  formChangeAvatar,
 } from "../scripts/data.js";
 import { Card } from "../scripts/card.js";
 import { setValidation, FormValidator } from "../scripts/FormValidator.js";
@@ -55,7 +57,7 @@ function createCard(item) {
           .dislikeCard(card.getCardId())
           .then((result) => {
             let likesVol = result.likes.length;
-            card.heartIconClick(likesVol--);
+            card.heartIconClick(likesVol);
 
             // добавить -1 к счётчику лайков
           })
@@ -65,7 +67,7 @@ function createCard(item) {
           .likeCard(card.getCardId())
           .then((result) => {
             let likesVol = result.likes.length;
-            card.heartIconClick(likesVol++);
+            card.heartIconClick(likesVol);
 
             // добавить +1 к счётчику лайков
           })
@@ -138,6 +140,25 @@ function openAddPictureForm() {
   pictureFormValidator.disableSubmitButton();
 }
 
+const changeAvatarForm = new PopupWithForm(
+"#popup-avatar-form", (avatar) => {
+console.log(avatar["avatar-link"]);
+api.sendNewAvatar(avatar["avatar-link"])
+.then(() => {
+  console.log("OK")
+})
+.catch((err) => console.log("НЕ ОК"));
+}
+)
+
+function openAvatarForm() {
+  changeAvatarForm.open();
+  avatarFormValidator.disableSubmitButton();
+}
+
+changeAvatarForm.setEventListeners();
+
+buttonChangeAvatar.addEventListener("click", openAvatarForm)
 buttonPictureAdd.addEventListener("click", openAddPictureForm);
 buttonProfileEdit.addEventListener("click", openProfile);
 
@@ -146,6 +167,9 @@ profileFormValidator.enableValidation();
 
 const pictureFormValidator = new FormValidator(setValidation, formAddPicture);
 pictureFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(setValidation, formChangeAvatar);
+avatarFormValidator.enableValidation();
 
 api
   .getInitialCards()
