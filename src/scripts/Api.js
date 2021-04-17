@@ -88,7 +88,7 @@ class Api {
       },
     }).then((response) =>
       response.ok
-        ? Promise.resolve("success")
+        ? response.json()
         : Promise.reject(`Ошибка ${response.status}`)
     );
   }
@@ -101,7 +101,7 @@ class Api {
       },
     }).then((response) =>
       response.ok
-        ? Promise.resolve("success")
+        ? response.json()
         : Promise.reject(`Ошибка ${response.status}`)
     );
   }

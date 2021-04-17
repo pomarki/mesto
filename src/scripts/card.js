@@ -19,6 +19,17 @@ class Card {
     this.handleLikeClick = handleLikeClick;
   }
 
+  getCardInfo() {
+    const actualHendlerCard = {
+      name: this._name,
+      link: this._link,
+      likes: this.likes,
+      _id: this._cardId,
+      owner: { _id: this._userId },
+    };
+    return actualHendlerCard;
+  }
+
   getCardId() {
     return this._cardId;
   }
@@ -65,6 +76,7 @@ class Card {
     this._element
       .querySelector(".element__info-heart")
       .classList.toggle("element__info-heart_type_disabled");
+    const _elementLikes = this._element.querySelector(".element__info-likes");
   }
   trashIconClick() {
     this._element.remove();
