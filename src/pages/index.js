@@ -141,23 +141,20 @@ function openAddPictureForm() {
 }
 
 const changeAvatarForm = new PopupWithForm("#popup-avatar-form", (avatar) => {
-  
-  document.querySelector("#avatar-buttom").textContent = "Coхранение";
-
   api
     .sendNewAvatar(avatar["avatar-link"])
     .then(() => {
-      
+      document.querySelector("#avatar-buttom").textContent = "Coхранение";
     })
     .catch((err) => console.log(err));
 
-    api
+  api
     .getUserInfo()
     .then((user) => {
+      document.querySelector(".profile__avatar").src = user["avatar"];
       
     })
     .catch((err) => console.log(err));
-
 });
 
 function openAvatarForm() {
