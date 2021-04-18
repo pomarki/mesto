@@ -9,21 +9,29 @@ class UserInfo {
     this._userAvatar = avatar; // ссылка на avatar
     this._id = id; // Id
   }
-  getUserInfo() { // возвращает инфу о пользователе, пришедшую с сервера
+  getUserInfo() {
+    // возвращает инфу о пользователе, пришедшую с сервера
     const actualUserInfo = {
       name: this._userName,
       about: this._userJob,
       avatar: this._userAvatar,
       id: this._id,
     };
-    
+
     return actualUserInfo;
   }
-  setUserInfo(object) {  // вписывает инфу о пользователе на страницу
+  setUserInfo(object) {
+    // вписывает инфу о пользователе на страницу
     this._profileName.textContent = object["name"];
     this._profileJob.textContent = object["about"];
     this._profileAvatar.src = object["avatar"];
     this._id = object["_id"];
+  }
+  upgrateUserInfo(object) {
+    name = object.name;
+    about = object.about;
+    avatar = object.avatar;
+    id = object.id;
   }
 }
 

@@ -88,13 +88,13 @@ const cardsList = new Section(
 );
 
 function renderLoadedCard() {
-  document.querySelector("#picture-button").textContent = "Coхранение";
+  document.querySelector("#picture-button").textContent = "Coхранение...";
   const dataCard = { name: formPictureName.value, link: formPictureLink.value };
   api
     .sendNewCard(dataCard)
     .then((myNewCard) => {
       cardsList.addItem(createCard(myNewCard));
-
+      document.querySelector("#picture-button").textContent = "Coздать";
       popupAddPicture.close();
     })
     .catch((err) => console.log(err));
@@ -103,7 +103,7 @@ function renderLoadedCard() {
 let userInfo = null;
 
 const popupProfile = new PopupWithForm("#popup-profile", (data) => {
-  document.querySelector("#profile-button").textContent = "Coхранение";
+  document.querySelector("#profile-button").textContent = "Coхранение...";
   const newFormValues = {
     name: data["user-name"],
     about: data["user-job"],
@@ -112,8 +112,9 @@ const popupProfile = new PopupWithForm("#popup-profile", (data) => {
     .changeUserInfo(newFormValues)
     .then((upgUserInfo) => {
       userInfo = new UserInfo(upgUserInfo);
+     /*  userInfo.upgrateUserInfo(upgUserInfo); */
       userInfo.setUserInfo(upgUserInfo);
-
+      document.querySelector("#profile-button").textContent = "Coхранить";
       popupProfile.close();
     })
     .catch((err) => console.log(err));
@@ -142,12 +143,13 @@ function openAddPictureForm() {
 }
 
 const changeAvatarForm = new PopupWithForm("#popup-avatar-form", (avatar) => {
-  document.querySelector("#avatar-buttom").textContent = "Coхранение";
+  document.querySelector("#avatar-buttom").textContent = "Coхранение...";
   api
     .sendNewAvatar(avatar["avatar-link"])
     .then(() => {
       document.querySelector(".profile__avatar").src = avatar["avatar-link"];
       changeAvatarForm.close();
+      document.querySelector("#avatar-buttom").textContent = "Coхранить";
     })
     .catch((err) => console.log(err));
 });
