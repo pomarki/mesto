@@ -6,10 +6,10 @@ class UserInfo {
 
     this._userName = name; // name
     this._userJob = about; // about
-    this._userAvatar = avatar; // avatar
+    this._userAvatar = avatar; // ссылка на avatar
     this._id = id; // Id
   }
-  getUserInfo() {
+  getUserInfo() { // возвращает инфу о пользователе, пришедшую с сервера
     const actualUserInfo = {
       name: this._userName,
       about: this._userJob,
@@ -19,7 +19,7 @@ class UserInfo {
     
     return actualUserInfo;
   }
-  setUserInfo(object) {
+  setUserInfo(object) {  // вписывает инфу о пользователе на страницу
     this._profileName.textContent = object["name"];
     this._profileJob.textContent = object["about"];
     this._profileAvatar.src = object["avatar"];

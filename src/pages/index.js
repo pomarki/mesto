@@ -56,16 +56,14 @@ function createCard(item) {
         api
           .dislikeCard(card.getCardId())
           .then((result) => {
-            let likesVol = result.likes.length;
-            card.heartIconClick(likesVol + 0);
+            card.heartIconClick(result.likes.length);
           })
           .catch((err) => console.log(err));
       } else {
         api
           .likeCard(card.getCardId())
           .then((result) => {
-            let likesVol = result.likes.length;
-            card.heartIconClick(likesVol + 0);
+            card.heartIconClick(result.likes.length);
           })
           .catch((err) => console.log(err));
       }
@@ -92,11 +90,11 @@ const cardsList = new Section(
 function renderLoadedCard() {
   document.querySelector("#picture-button").textContent = "Coхранение";
   const dataCard = { name: formPictureName.value, link: formPictureLink.value };
-    api
+  api
     .sendNewCard(dataCard)
     .then((myNewCard) => {
       cardsList.addItem(createCard(myNewCard));
-      
+
       popupAddPicture.close();
     })
     .catch((err) => console.log(err));
@@ -112,9 +110,9 @@ const popupProfile = new PopupWithForm("#popup-profile", (data) => {
   };
   api
     .changeUserInfo(newFormValues)
-    .then(() => {
-      
-      userInfo.setUserInfo(newFormValues);
+    .then((upgUserInfo) => {
+      userInfo.getUserInfo();
+      userInfo.setUserInfo(upgUserInfo);
       popupProfile.close();
     })
     .catch((err) => console.log(err));
@@ -127,8 +125,8 @@ function openProfile() {
   formUserName.value = userData.name;
   formUserJob.value = userData.about;
   popupProfile.open();
-
   profileFormValidator.enableSubmitButton();
+  userInfo.getUserInfo();
 }
 
 const popupAddPicture = new PopupWithForm(
@@ -182,7 +180,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       avatar: userData.avatar,
       id: userData._id,
     });
-    userInfo.getUserInfo();
+    /* userInfo.getUserInfo(); */
     userInfo.setUserInfo({
       name: userData.name,
       about: userData.about,
