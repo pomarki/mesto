@@ -90,11 +90,13 @@ const cardsList = new Section(
 );
 
 function renderLoadedCard() {
+  document.querySelector("#picture-button").textContent = "Coхранение";
   const dataCard = { name: formPictureName.value, link: formPictureLink.value };
     api
     .sendNewCard(dataCard)
     .then((myNewCard) => {
       cardsList.addItem(createCard(myNewCard));
+      
       popupAddPicture.close();
     })
     .catch((err) => console.log(err));
