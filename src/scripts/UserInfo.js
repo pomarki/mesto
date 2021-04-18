@@ -28,10 +28,10 @@ class UserInfo {
     this._id = object["_id"];
   }
   upgrateUserInfo(object) {
-    name = object.name;
-    about = object.about;
-    avatar = object.avatar;
-    id = object.id;
+    this._userName  = object.name;
+    this._userJob = object.about;
+    this._userAvatar = object.avatar;
+    this._id = object.id;
   }
 }
 

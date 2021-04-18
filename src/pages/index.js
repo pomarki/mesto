@@ -87,14 +87,22 @@ const cardsList = new Section(
   elementList
 );
 
+function toggleButtonStatus(buttonId, status) {
+  status
+    ? (document.querySelector(buttonId).textContent = "Coхранение...")
+    : (document.querySelector(buttonId).textContent = "Coхранить");
+}
+
 function renderLoadedCard() {
-  document.querySelector("#picture-button").textContent = "Coхранение...";
+  toggleButtonStatus("#picture-button", true);
+
   const dataCard = { name: formPictureName.value, link: formPictureLink.value };
   api
     .sendNewCard(dataCard)
     .then((myNewCard) => {
       cardsList.addItem(createCard(myNewCard));
-      document.querySelector("#picture-button").textContent = "Coздать";
+
+      toggleButtonStatus("#picture-button", false);
       popupAddPicture.close();
     })
     .catch((err) => console.log(err));
@@ -103,7 +111,7 @@ function renderLoadedCard() {
 let userInfo = null;
 
 const popupProfile = new PopupWithForm("#popup-profile", (data) => {
-  document.querySelector("#profile-button").textContent = "Coхранение...";
+  toggleButtonStatus("#profile-button", true);
   const newFormValues = {
     name: data["user-name"],
     about: data["user-job"],
@@ -111,10 +119,9 @@ const popupProfile = new PopupWithForm("#popup-profile", (data) => {
   api
     .changeUserInfo(newFormValues)
     .then((upgUserInfo) => {
-      userInfo = new UserInfo(upgUserInfo);
-     /*  userInfo.upgrateUserInfo(upgUserInfo); */
+      userInfo.upgrateUserInfo(upgUserInfo);
       userInfo.setUserInfo(upgUserInfo);
-      document.querySelector("#profile-button").textContent = "Coхранить";
+      toggleButtonStatus("#profile-button", false);
       popupProfile.close();
     })
     .catch((err) => console.log(err));
@@ -143,13 +150,14 @@ function openAddPictureForm() {
 }
 
 const changeAvatarForm = new PopupWithForm("#popup-avatar-form", (avatar) => {
-  document.querySelector("#avatar-buttom").textContent = "Coхранение...";
+  toggleButtonStatus("#avatar-buttom", true);
   api
     .sendNewAvatar(avatar["avatar-link"])
     .then(() => {
       document.querySelector(".profile__avatar").src = avatar["avatar-link"];
       changeAvatarForm.close();
-      document.querySelector("#avatar-buttom").textContent = "Coхранить";
+
+      toggleButtonStatus("#avatar-buttom", false);
     })
     .catch((err) => console.log(err));
 });
