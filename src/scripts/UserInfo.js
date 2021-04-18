@@ -1,5 +1,5 @@
 class UserInfo {
-  constructor({ name, about, avatar }) {
+  constructor({ name, about, avatar, id }) {
     this._profileName = document.querySelector(".profile__name");
     this._profileJob = document.querySelector(".profile__job");
     this._profileAvatar = document.querySelector(".profile__avatar");
@@ -7,12 +7,14 @@ class UserInfo {
     this._userName = name; // name
     this._userJob = about; // about
     this._userAvatar = avatar; // avatar
+    this._id = id; // Id
   }
   getUserInfo() {
     const actualUserInfo = {
       name: this._userName,
       about: this._userJob,
       avatar: this._userAvatar,
+      id: this._id,
     };
     
     return actualUserInfo;
@@ -21,7 +23,7 @@ class UserInfo {
     this._profileName.textContent = object["name"];
     this._profileJob.textContent = object["about"];
     this._profileAvatar.src = object["avatar"];
-    
+    this._id = object["_id"];
   }
 }
 

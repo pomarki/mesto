@@ -6,7 +6,8 @@ class Card {
     cardSelector,
     handleCardClick,
     handleTrashClick,
-    handleLikeClick
+    handleLikeClick,
+    myId
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -17,6 +18,7 @@ class Card {
     this.handleCardClick = handleCardClick;
     this.handleTrashClick = handleTrashClick;
     this.handleLikeClick = handleLikeClick;
+    this.myId = myId;
   }
 
   getCardInfo() {
@@ -37,11 +39,12 @@ class Card {
     return this.likes.length;
   }
   checkLike() {
-    if (this.likes.find((item) => item._id == "e6c92694e7b7e6c22ce22a70")) {
+    /* if (this.likes.find((item) => item._id == this.myId)) {
       return true;
     } else {
       return false;
-    }
+    } */
+    return this.likes.some((like) => like._id === this.myId);
   }
 
   _getTemplate() {
@@ -91,11 +94,11 @@ class Card {
     const _elementImg = this._element.querySelector(".element__img");
     const _elementLikes = this._element.querySelector(".element__info-likes");
 
-    if (this._userId == "e6c92694e7b7e6c22ce22a70") {
+    if (this._userId == this.myId) {
       this._trashButton.classList.add("element__trash_visible");
     }
 
-    if (this.likes.find((item) => item._id == "e6c92694e7b7e6c22ce22a70")) {
+    if (this.likes.find((item) => item._id == this.myId)) {
       this._element
         .querySelector(".element__info-heart")
         .classList.remove("element__info-heart_type_disabled");

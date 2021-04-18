@@ -45,9 +45,9 @@ function createCard(item) {
           .removeCard(card.getCardId())
           .then(() => {
             card.trashIconClick();
+            popupConfirm.close();
           })
           .catch((err) => console.log(err));
-        popupConfirm.close();
       });
     },
     () => {
@@ -57,9 +57,7 @@ function createCard(item) {
           .dislikeCard(card.getCardId())
           .then((result) => {
             let likesVol = result.likes.length;
-            card.heartIconClick(likesVol);
-
-            // добавить -1 к счётчику лайков
+            card.heartIconClick(likesVol + 0);
           })
           .catch((err) => console.log(err));
       } else {
@@ -67,13 +65,12 @@ function createCard(item) {
           .likeCard(card.getCardId())
           .then((result) => {
             let likesVol = result.likes.length;
-            card.heartIconClick(likesVol);
-
-            // добавить +1 к счётчику лайков
+            card.heartIconClick(likesVol + 0);
           })
           .catch((err) => console.log(err));
       }
-    }
+    },
+    "e6c92694e7b7e6c22ce22a70"
   );
 
   return card.generateCard();
@@ -106,15 +103,18 @@ function renderLoadedCard() {
 let userInfo = null;
 
 const popupProfile = new PopupWithForm("#popup-profile", (data) => {
-  const newFormValues = { name: data["user-name"], about: data["user-job"] };
+  const newFormValues = {
+    name: data["user-name"],
+    about: data["user-job"],
+    avatar: data["avatar"],
+  };
   api
     .changeUserInfo(newFormValues)
     .then(() => {
       userInfo.setUserInfo(newFormValues);
+      popupProfile.close();
     })
     .catch((err) => console.log(err));
-
-  popupProfile.close();
 });
 
 popupProfile.setEventListeners();
@@ -145,16 +145,10 @@ const changeAvatarForm = new PopupWithForm("#popup-avatar-form", (avatar) => {
     .sendNewAvatar(avatar["avatar-link"])
     .then(() => {
       document.querySelector("#avatar-buttom").textContent = "Coхранение";
+      document.querySelector(".profile__avatar").src = avatar["avatar-link"];
     })
     .catch((err) => console.log(err));
-
-  api
-    .getUserInfo()
-    .then((user) => {
-      document.querySelector(".profile__avatar").src = user["avatar"];
-      
-    })
-    .catch((err) => console.log(err));
+  
 });
 
 function openAvatarForm() {
@@ -177,26 +171,24 @@ pictureFormValidator.enableValidation();
 const avatarFormValidator = new FormValidator(setValidation, formChangeAvatar);
 avatarFormValidator.enableValidation();
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    cardsList.renderItems(cards);
-  })
-  .catch((err) => console.log(err));
-
-api
-  .getUserInfo()
-  .then((user) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
     userInfo = new UserInfo({
-      name: user.name,
-      about: user.about,
-      avatar: user.avatar,
+      name: userData.name,
+      about: userData.about,
+      avatar: userData.avatar,
+      id: userData._id,
     });
     userInfo.getUserInfo();
     userInfo.setUserInfo({
-      name: user.name,
-      about: user.about,
-      avatar: user.avatar,
+      name: userData.name,
+      about: userData.about,
+      avatar: userData.avatar,
+      id: userData._id,
     });
+
+    cardsList.renderItems(initialCards);
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err);
+  });

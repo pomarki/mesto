@@ -1,3 +1,10 @@
+const handleResponse = (response) => {
+  if (!response.ok) {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+  return response.json();
+}
+
 class Api {
   constructor({ address, token, groupID }) {
     this._address = address;
@@ -10,12 +17,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(`Ошибка ${response.status}`);
-    });
+    }).then(handleResponse);
   }
 
   getUserInfo() {
@@ -23,12 +25,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(`Ошибка ${response.status}`);
-    });
+    }).then(handleResponse);
   }
 
   changeUserInfo(data) {
@@ -42,11 +39,7 @@ class Api {
         name: data.name,
         about: data.about,
       }),
-    }).then((response) =>
-      response.ok
-        ? response.json()
-        : Promise.reject(`Ошибка ${response.status}`)
-    );
+    }).then(handleResponse);
   }
 
   sendNewCard(data) {
@@ -60,11 +53,7 @@ class Api {
         name: data.name,
         link: data.link,
       }),
-    }).then((response) =>
-      response.ok
-        ? response.json()
-        : Promise.reject(`Ошибка ${response.status}`)
-    );
+    }).then(handleResponse);
   }
 
   removeCard(id) {
@@ -86,11 +75,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then((response) =>
-      response.ok
-        ? response.json()
-        : Promise.reject(`Ошибка ${response.status}`)
-    );
+    }).then(handleResponse);
   }
 
   dislikeCard(id) {
@@ -99,11 +84,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then((response) =>
-      response.ok
-        ? response.json()
-        : Promise.reject(`Ошибка ${response.status}`)
-    );
+    }).then(handleResponse);
   }
   sendNewAvatar(avatar) {
     return fetch(`${this._address}/${this._groupID}/users/me/avatar`, {
