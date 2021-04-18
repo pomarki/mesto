@@ -111,8 +111,9 @@ const popupProfile = new PopupWithForm("#popup-profile", (data) => {
   api
     .changeUserInfo(newFormValues)
     .then((upgUserInfo) => {
-      userInfo.getUserInfo();
+      userInfo = new UserInfo(upgUserInfo);
       userInfo.setUserInfo(upgUserInfo);
+
       popupProfile.close();
     })
     .catch((err) => console.log(err));
@@ -126,7 +127,6 @@ function openProfile() {
   formUserJob.value = userData.about;
   popupProfile.open();
   profileFormValidator.enableSubmitButton();
-  userInfo.getUserInfo();
 }
 
 const popupAddPicture = new PopupWithForm(
@@ -180,7 +180,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       avatar: userData.avatar,
       id: userData._id,
     });
-    /* userInfo.getUserInfo(); */
+
     userInfo.setUserInfo({
       name: userData.name,
       about: userData.about,
