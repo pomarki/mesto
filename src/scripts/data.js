@@ -16,6 +16,7 @@ const formPictureLink = formAddPicture.querySelector(
 const buttonPictureAdd = profileContainer.querySelector(".profile__add-button");
 const buttonPopupConfirm = document.querySelector("#popup-confirm-button");
 const buttonChangeAvatar = document.querySelector(".profile__avatar-change-icon");
+const userAvatar = document.querySelector(".profile__avatar");
 
 const setValidation = {
   formSelector: ".popup__form",
@@ -42,4 +43,5 @@ export {
   setValidation,
   buttonChangeAvatar,
   formChangeAvatar,
+  userAvatar,
 };

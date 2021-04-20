@@ -39,11 +39,6 @@ class Card {
     return this.likes.length;
   }
   checkLike() {
-    /* if (this.likes.find((item) => item._id == this.myId)) {
-      return true;
-    } else {
-      return false;
-    } */
     return this.likes.some((like) => like._id === this.myId);
   }
 
@@ -60,13 +55,13 @@ class Card {
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        /* this._trashIconClick(); */
+        
         this.handleTrashClick();
       });
     this._element
       .querySelector(".element__info-heart")
       .addEventListener("click", () => {
-        /* this.heartIconClick(); */
+      
         this.handleLikeClick();
       });
     this._element
@@ -81,7 +76,6 @@ class Card {
       .classList.toggle("element__info-heart_type_disabled");
     const _elementLikes = this._element.querySelector(".element__info-likes");
     _elementLikes.textContent = vol;
-
   }
   trashIconClick() {
     this._element.remove();

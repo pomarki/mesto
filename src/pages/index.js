@@ -11,6 +11,7 @@ import {
   buttonPopupConfirm,
   buttonChangeAvatar,
   formChangeAvatar,
+  userAvatar,
 } from "../scripts/data.js";
 import { Card } from "../scripts/card.js";
 import { setValidation, FormValidator } from "../scripts/FormValidator.js";
@@ -68,7 +69,8 @@ function createCard(item) {
           .catch((err) => console.log(err));
       }
     },
-    "e6c92694e7b7e6c22ce22a70"
+
+    userInfo.getUserInfo().id
   );
 
   return card.generateCard();
@@ -154,7 +156,7 @@ const changeAvatarForm = new PopupWithForm("#popup-avatar-form", (avatar) => {
   api
     .sendNewAvatar(avatar["avatar-link"])
     .then(() => {
-      document.querySelector(".profile__avatar").src = avatar["avatar-link"];
+      userAvatar.src = avatar["avatar-link"];
       changeAvatarForm.close();
 
       toggleButtonStatus("#avatar-buttom", false);
@@ -191,13 +193,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       id: userData._id,
     });
 
-    userInfo.setUserInfo({
-      name: userData.name,
-      about: userData.about,
-      avatar: userData.avatar,
-      id: userData._id,
-    });
-
+    userInfo.setUserInfo(userData);
     cardsList.renderItems(initialCards);
   })
   .catch((err) => {
