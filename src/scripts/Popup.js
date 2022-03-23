@@ -6,7 +6,7 @@ class Popup {
     this._closeButton = this._popupContainer.querySelector(
       ".popup__close-button"
     );
-    /* this._confirmButton = document.querySelector("#popup-confirm-button"); */
+
     this.keydownFunction = this.keydownFunction.bind(this);
   }
 
@@ -28,7 +28,6 @@ class Popup {
 
   setEventListeners() {
     this._closeButton.addEventListener("click", () => this.close());
-    /* this._confirmButton.addEventListener("click", () => this.close()); */
     this._popupContainer.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("popup_opened")) {
         this.close();

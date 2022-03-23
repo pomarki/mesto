@@ -78,6 +78,7 @@ class Card {
     _elementLikes.textContent = vol;
   }
   trashIconClick() {
+    
     this._element.remove();
     this._element = null;
   }
